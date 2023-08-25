@@ -101,25 +101,15 @@ function rotateFont() {
     f.style.fontFamily = fonts[font] + ", Tahoma";
 }
 function trolle() {
-    alert("aha! you've been fooled, and the button actually did something! -183exe");
+    alert("aha! you've been fooled, and the button actually did something! -awne.me");
 }
 let links = [
-    "https://youtube.com/c/182exe",
-    "https://youtube.com/channel/UC-L7G3CaIMmQDCbWSdOS1kA",
-    "https://discord.gg/nTBKbg9gGu",
-    "https://namemc.com/search?q=182exe",
-    "https://namemc.com/search?q=Resourcepac",
-    "https://pvprp.com/profile/182exe",
-    "https://resourcepacks24.de/profile/182exe",
-    "https://github.com/182exe/",
-    "https://ko-fi.com/182exe",
-    "https://hypixel.net/members/182exe.4237691/",
-    "https://182exe.xyz/matrix/",
-    "https://182exe.xyz/jibbertyper",
-    "https://182exe.xyz/linkbandit",
-    "https://182exe.xyz/rotcustom",
-    "https://182exe.xyz/links?id=youtube",
-    "https://182exe.xyz/pingpong",
+    "https://github.com/awne8886/",
+    "https://awne.xyz/matrix/",
+    "https://awne.xyz/jibbertyper",
+    "https://awne.xyz/linkbandit",
+    "https://awne.xyz/rotcustom",
+    "https://awne.xyz/pingpong",
 ]
 function openLink(target) {
     window.open(links[target], '_blank');

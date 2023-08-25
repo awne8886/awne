@@ -1,1 +1,1 @@
-# https://182exe.xyz
+# https://awne.xyz
