@@ -105,7 +105,8 @@ function trolle() {
 }
 let links = [
     "https://github.com/awne8886/",
-    "https://awne.xyz/matrix/",
+    "https://www.snapchat.com/add/awne.me",
+    "https://instagram.com/awen8091",
     "https://awne.xyz/jibbertyper",
     "https://awne.xyz/linkbandit",
     "https://awne.xyz/rotcustom",
