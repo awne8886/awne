@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Victor+Mono&display=swap');
+
+body {
+    background-color: #0b1012;
+    font-family: 'Victor Mono', monospace;
+    margin: 0 10%;
+    margin-bottom: 5%;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+.settings, .button {
+    background-color: #0b1012;
+    font-family: 'Victor Mono', monospace;
+    border: 3px solid #AAA;
+    border-radius: 10px;
+    color: white;
+    padding: 6px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button {
+    background-color: white;
+    border: none;
+    color: #0b1012;
+    border: 3px solid white;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #0b1012;
+    color: white;
+}
+
+.button:active {
+    background-color: white;
+    color: #0b1012;
+}
+
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+    color: #AAA;
+}
+
+.title, .text, .input {
+    display: inline;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+    background-color: #0b1012;
+    font-family: 'Victor Mono', monospace;
+}
+
+.title {
+    padding: 0.1% 0;
+    font-size: 20px;
+}
+
+.text, .input {
+    padding: 2% 0;
+}
+
+.progress-bar, .progress-bar-secondary {
+    height: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+.progress-bar {
+    background-color: #2c8048;
+    animation-name: progress-bar-animation;
+}
+
+.progress-bar-secondary {
+    background-color: #Ff9c00;
+    animation-name: progress-bar-secondary-animation;
+}
+
+.correct {
+    background-color: #2c8048;
+}
+
+.wrong {
+    background-color: #801416;
+}
+
+@keyframes progress-bar-animation {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes progress-bar-secondary-animation {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes animate {
+    0% {
+        width: 100%;
+        background-color: #2c8048;
+    }
+    45% {
+        width: 55%;
+    }
+    50% {
+        width: 50%;
+        background-color: #Ff9c00;
+    }
+    70% {
+        width: 30%;
+    }
+    75% {
+        width: 25%;
+        background-color: #801416;
+    }
+    100% {
+        width: 0%;
+        background-color: #801416;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+  
+.progress-bars {
+    display: flex;
+    flex-direction: column;
+    justify-items: left;
+    align-items: flex-start;
+    width: 35%;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 0%;
+}
+
+.progress-bar-time {
+    background-color: #2c8048;
+}
+
+.progress-bar-progress {
+    background-color: white;
+    transition: 0.3s ease-in-out all;
+}

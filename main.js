@@ -107,10 +107,10 @@ let links = [
     "https://github.com/awne8886/",
     "https://www.snapchat.com/add/awne.me",
     "https://instagram.com/awen8091",
-    "https://awne.xyz/jibbertyper",
-    "https://awne.xyz/linkbandit",
-    "https://awne.xyz/rotcustom",
-    "https://awne.xyz/pingpong",
+    "https://alenpascal.pages.dev/jibbertyper",
+    "https://alenpascal.pages.dev/pingpong",
+    "https://alenpascal.pages.dev/linkbandit",
+    "https://alenpascal.pages.dev/rotcustom",
 ]
 function openLink(target) {
     window.open(links[target], '_blank');
@@ -130,7 +130,7 @@ var quotes = [
     "Procrastination - The art of keeping up with yesterday.",
     "If you want a guarantee, buy a toaster.",
     "Reality continues to ruin my life.",
-    "Tinder: A woman's ego boost and a man's waste of time.",
+    "Did you know that a frog can jump higher than the Eiffel Tower?, It's because the Eiffel Tower can't jump.",
     "You miss 100% of the shots you don't shoot",
     "Bread: The best thing since wheat",
     "I ran out of ideas, time to do some internet thievery",
@@ -148,14 +148,15 @@ var quotes = [
     "look behind you",
     "*you're",
     "join my discord to suggest quotes and stuff",
-    "me when",
+    "me when : ",
+    "bruh",
     "If I had a penny for every time I clicked in Fortnite, I'd be broke.",
     "20 Dollars later...",
     "suggest me quotes to be added here!",
     "One time in second grade I fell off the play structure and hit my head on a pole",
     "Reasons why 'nobody asked' is a terrible argument: 1. You don't actually know that nobody asked 2. This is a public internet chat, I can say what I want and I don't care whether or not you think that someone 'asked.' 3. If everyone had to have someone else ask a question before another person could say something, then that would mean that every word ever spoken would be an answer. And that's just not how it works.",
     "Your imagination can be revamped into literally anything. It's very useful when you're bored. Just go imagine gaming.",
-    "have you subscribed?",
+    "Why are you still here?",
 ];
 const usedQuotes = [];
 let quotesUsed = 0;

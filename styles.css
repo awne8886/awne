@@ -1,8 +1,8 @@
 :root {
-  --highlight: #a3a29a;
-  --midtone1: #c56981;
-  --midtone2: #545c7e;
-  --shadow: #282328;
+  --highlight: #000000;
+  --midtone1: #ffd700;
+  --midtone2: #d5cb13;
+  --shadow: #000000;
 }
 :active {
     transition: 0.01s ease-in-out;
@@ -19,8 +19,14 @@
     margin-right: 5%;
 }
 body {
-    font-family: DM Sans, Tahoma;
-    color: var(--highlight);
+    background-color: var(--highlight);
+    font-family: 'Victor Mono', monospace;
+    color: white;
+    margin: 0 10%;
+    margin-bottom: 5%;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: normal;
 }
 p {
     line-height: 160%;
@@ -65,14 +71,40 @@ ul {
 a {
     color: var(--midtone1);
 }
+
+
+
+.button {
+    background-color: #0b1012;
+    font-family: 'Victor Mono', monospace;
+    border: 3px solid #AAA;
+    border-radius: 10px;
+    color: white;
+    padding: 6px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #0b1012;
+    color: white;
+}
+
+.button:active {
+    background-color: white;
+    color: #0b1012;
+}
+
+
+
 button {
     font-family: inherit;
     color: var(--highlight);
-    background-color: transparent;
+    background-color: white;
     text-align: center;
     padding: 2% 4%;
     text-decoration: none;
-    border: 3px solid var(--midtone1);
+    border: 3px solid white;
     border-radius: 5px;
 }
 button:hover {
@@ -106,7 +138,7 @@ footer {
     margin: 0;
     float: left;
     color: var(--highlight);
-    background-color: transparent;
+    background-color: white;
     text-align: center;
     padding: 1% 2%;
     text-decoration: none;
@@ -122,7 +154,7 @@ footer {
     background-color: var(--midtone1);
 }
 .heading {
-    font-size: 2vw;
+    font-size: 2.5vw;
 }
 .subheading {
     font-size: 1.7vw;
@@ -144,7 +176,7 @@ footer {
 }
 .clickable:hover,.clickable:focus,.clickable:active,h1:hover,h1:focus,h1:active {
     background-size: 100% 0.1em;
-    animation: bounce 1s;
+    animation: bounce 2s;
 }
 .animRect {
     animation: hExit 9999s;

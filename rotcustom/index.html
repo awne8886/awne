@@ -1,0 +1,51 @@
+<!--
+awne.me
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="Rotcustom"/>
+  <meta name="og:title" content="Rotcustom"/>
+  <meta name="og:description" content="Automatically decode and encode rotation ciphers online."/>
+  <meta name="og:type" content="website"/>
+  <meta name="og:url" content="https://alenpascal.pages.dev/rotcustom"/>
+  <meta name="og:image" content="https://ucarecdn.com/301d20e4-3ab1-4f2a-89a1-f16f8ce279b9/ggon.jpg"/>
+  <link rel="shortcut icon" type="image/jpg" href="https://ucarecdn.com/301d20e4-3ab1-4f2a-89a1-f16f8ce279b9/ggon.jpg"/>
+  <link rel="icon" type="image/jpg" href="https://ucarecdn.com/301d20e4-3ab1-4f2a-89a1-f16f8ce279b9/ggon.jpg"/>
+  <link rel="stylesheet" href="styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Courier Prime' rel='stylesheet'>
+  <title>Rotcustom</title>
+</head>
+<body>
+  <div class="title">
+    <h1>Rotcustom</h1>
+    <h5>Automatically decode and encode rotation ciphers online.</h5>
+  </div>
+  <hr class="hr">
+  <div class="title">
+    <h3>Settings</h3>
+    <h5>Please input your character offset and your message you want to encrypt/decrypt in the boxes. If you don't know what to do, hover over the "What is this?" text next to the inputs. To decode ciphers that you have made, take your original offset (lets say, 4), and subtract it from 26. To decode a cipher from the offset 26, you would use offset 22.</h5>
+    <input id="offsetInput" class="settings" type="number" placeholder="Input Offset Amount"> <div class="tooltip">[ What is this? ]<span class="tooltiptext">Input how many letters you want to shift the text by. See settings description for how to use negative ciphers.</span></div>
+    <br>
+    <br>
+    <input id="textInput" class="settings" type="text" placeholder="Encoded"> <div class="tooltip">[ What is this? ]<span class="tooltiptext">Input the encoded cipher, or the message you want to decode here. It doesn't matter which, as long as the offset is correct, because it will rotate the letters either way.</span></div>
+    <br>
+    <br>
+    <button class="button" onclick="javascript:updateSettings()">Generate</button>
+    <button class="button" onclick="javascript:copyResult()">Copy Result</button>
+    <button class="button" onclick="javascript:viewRaw()">View Raw Result</button>
+    <select id="premadeModes">
+      <option value="none">None</option>
+      <option value="caesar">Caesar Classic</option>
+    </select>
+    <button class="button" onclick="javascript:updateTheme()">Change Theme</button>
+    <br>
+    <br>
+  </div>
+  <hr class="hr">
+  <div class="text"></div>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Jibbertyper">
+    <meta name="og:title" content="Jibbertyper">
+    <meta name="og:description" content="A simple typing game with randomly generated words.">
+    <meta name="og:image" content="https://ucarecdn.com/3e40486e-b384-4e1a-8dda-2449eca23a75/ggon.jpg">
+    <link rel="shortcut icon" type="image/jpg" href="https://ucarecdn.com/3e40486e-b384-4e1a-8dda-2449eca23a75/ggon.jpg">
+    <link rel="icon" type="image/jpg" href="https://ucarecdn.com/3e40486e-b384-4e1a-8dda-2449eca23a75/ggon.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <title>Jibbertyper</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Jibbertyper</h1>
+            <h5>A simple typing game with randomly generated words. By - awne.</h5>
+        </div>
+        <div class="title">
+            <h3>Settings</h3>
+            <h5>Please enter inputs for custom challenges before you start. Higher time values mean shorter time to complete. Time always scales by length. Higher length values mean longer strings.</h5>
+            <input id="timeInput" class="settings" type="number" placeholder="Time (Default 3)">
+            <input id="lengthInput" class="settings" type="number" placeholder="Length (Default: 15)">
+            <button class="button" onclick="updateSettings()">Generate Level</button>
+        </div>
+        <div class="text"></div>
+        <div class="progress-bars">
+            <div class="progress-bar progress-bar-time" id="progress-bar-time"></div>
+            <div class="progress-bar progress-bar-progress" id="progress-bar-progress"></div>
+        </div>
+        <textarea id="inputarea" autofocus class="input" placeholder="Start Typing..." autocorrect="off" autocomplete="off"></textarea>
+        
+        <script src="main.js"></script>
+        <script src="anticheat.js"></script>
+    </div>
+</body>
+</html>
