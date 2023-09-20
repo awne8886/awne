@@ -88,6 +88,7 @@ a {
 .button:hover {
     background-color: #0b1012;
     color: white;
+    transform: rotateY(360deg);
 }
 
 .button:active {
@@ -111,7 +112,7 @@ button:hover {
     color: var(--shadow);
     background-color: var(--midtone1);
     cursor: pointer;
-    transform: rotate(5deg);
+    transform: rotateY(360deg);
 }
 button:active {
     background-color: var(--midtone2);
@@ -148,6 +149,7 @@ footer {
 .topnav a:hover {
     color: var(--shadow);
     background-color: var(--midtone1);
+    transform: rotateY(360deg);
 }
 .active {
     color: var(--shadow);
@@ -155,9 +157,11 @@ footer {
 }
 .heading {
     font-size: 2.5vw;
+    transform: rotateY(360deg);
 }
 .subheading {
     font-size: 1.7vw;
+    transform: rotateY(360deg);
 }
 .text {
     font-size: 1vw;
@@ -176,7 +180,7 @@ footer {
 }
 .clickable:hover,.clickable:focus,.clickable:active,h1:hover,h1:focus,h1:active {
     background-size: 100% 0.1em;
-    animation: bounce 2s;
+    animation: bounce 3s;
 }
 .animRect {
     animation: hExit 9999s;
