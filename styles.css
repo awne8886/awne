@@ -329,17 +329,6 @@ nav {
 .hover-this {
   transition: all 0.3s ease;
 }
-
-span {
-  display: inline-block;
-  font-family: 'Victor Mono', monospace;  font-weight: 400;
-  color: #fff;
-  font-size: 36px;
-  text-transform: uppercase;
-  pointer-event: none;
-  transition: transform 0.1s linear;
-}
-
 .cursor {
   pointer-events: none;
   position: fixed;
@@ -353,19 +342,6 @@ span {
 .hover-this:hover ~ .cursor {
   transform:translate(-50%, -50%) scale(8);
 }
-
-@media(min-width: 900px) {
-  nav {
-    display: flex;
-    justify-content: space-around;
-  }
-}
-
-@media(max-width: 900px) {
-  nav {
-    top: 30%;
-  }
-  
   .hover-this {
     width: 100%;
     padding: 20px 0;

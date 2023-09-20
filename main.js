@@ -173,22 +173,7 @@ function genQuote() {
 }
 
 // start all nessecary functions
-function init() {
-    const splash = document.getElementById("splash");
-    const transition = document.getElementById("transitionRectangle");
-    splash.style.opacity=0;
-    transition.classList.add("animRect");
-    function endSplash() {
-        splash.remove();
-        transition.classList.remove("animRect");
-        transition.classList.remove("splashStateRect");
-        transition.classList.add("noAnimRect");
-    }
-    let d = setTimeout(endSplash, 1000);
-    
-}
-
-(function () {
+function () {
 
       const link = document.querySelectorAll('nav > .hover-this');
       const cursor = document.querySelector('.cursor');
@@ -217,4 +202,19 @@ function init() {
       link.forEach(b => b.addEventListener('mouseleave', animateit));
       window.addEventListener('mousemove', editCursor);
 
-})();
+};
+
+function init() {
+    const splash = document.getElementById("splash");
+    const transition = document.getElementById("transitionRectangle");
+    splash.style.opacity=0;
+    transition.classList.add("animRect");
+    function endSplash() {
+        splash.remove();
+        transition.classList.remove("animRect");
+        transition.classList.remove("splashStateRect");
+        transition.classList.add("noAnimRect");
+    }
+    let d = setTimeout(endSplash, 1000);
+    
+}
