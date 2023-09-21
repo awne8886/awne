@@ -1,2 +1,2 @@
 # cubes
-Mouse Pointer activated CUBES
+Spinning dotted CUBES

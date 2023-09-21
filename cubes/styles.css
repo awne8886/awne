@@ -1,5 +1,5 @@
-@use postcss-nested;
-@use postcss-simple-vars;
+npm install postcss --save-dev
+use postcss-simple-vars
 
 body {
     margin: 0;
