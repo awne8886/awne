@@ -304,3 +304,11 @@ footer {
     border-radius: 3px;
 }
   
+.show-image {
+    text-decoration: none;
+    background-image: linear-gradient(var(--midtone1), var(--midtone1));
+    background-repeat: no-repeat;
+    background-size: 0 0.1em;
+    background-position: 0 100%;
+    display: inline-block;
+}
