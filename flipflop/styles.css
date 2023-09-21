@@ -1,6 +1,6 @@
 /* Set-up */
 body {
-	color: rgb(28, 218, 239);
+	color: rgb(6, 106, 117);
 	text-transform: uppercase;
 	font-family: sans-serif;
 	font-size: 100%;
@@ -26,14 +26,14 @@ body {
 
 /* The two faces of the cube */
 .flippety,.flop {
-	background: rgba(103, 102, 102, 0.443);
+	background: rgb(247, 247, 247);
 	border: 1px solid rgba(147, 184, 189, .8);
 
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 
-	-webkit-box-shadow: 0 5px 20px rgba(67, 70, 71, 0.3), 0 0 8px 5px rgba(111, 231, 255, 0.4) inset;
-	box-shadow: 0 5px 20px rgba(67, 70, 71, 0.3), 0 0 8px 5px rgba(111, 231, 255, 0.4) inset;
+	-webkit-box-shadow: 0 5px 20px rgba(105, 108, 109, .3), 0 0 8px 5px rgba(208, 223, 226, .4) inset;
+	box-shadow: 0 5px 20px rgba(105, 108, 109, .3), 0 0 8px 5px rgba(208, 223, 226, .4) inset;
 	height: 200px;
 }
 
