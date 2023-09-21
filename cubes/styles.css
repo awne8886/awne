@@ -1,90 +1,180 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+@use postcss-nested;
+@use postcss-simple-vars;
 
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	background: #000000;
+    margin: 0;
+    padding: 0;  
+}
+.wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+
+    &__content {
+        height: 450px;
+        width: 280px;
+        position: relative;
+    }
 }
 
-@keyframes animate {
-	0% {
-		filter: hue-rotate(0deg);
-	}
-	100% {
-		filter: hue-rotate(360deg);
-	}
+@keyframes rotation {
+    0% {
+        transform: rotateZ(0deg) rotateX(-15deg) rotateY(0deg)
+    }
+    100% {
+        transform: rotateZ(0deg) rotateX(-15deg) rotateY(-360deg)
+    }
 }
 
-.container {
-	position: relative;
-	top: -80px;
-	transform: skewY(-20deg);
-	animation: animate 5s linear infinite;
-	.cube {
-		position: relative;
-		z-index: 2;
-		&:nth-child(2) {
-			z-index: 1;
-			translate: -60px -60px;
-		}
-		&:nth-child(3) {
-			z-index: 3;
-			translate: 60px 60px;
-		}
-		div {
-			position: absolute;
-			display: flex;
-			flex-direction: column;
-			gap: 30px;
-			translate: calc(-70px * var(--x)) calc(-60px * var(--y));
-			span {
-				position: relative;
-				display: inline-block;
-				width: 50px;
-				height: 50px;
-				background: #dcdcdc;
-				z-index: calc(1 * var(--i));
-				transition: 1.5s;
-				&:hover {
-					transition: 0s;
-					background: #ef4149;
-					filter: drop-shadow(0 0 30px #ef4149);
-					&:before, 
-					&:after {
-						transition: 0s;
-						background: #ef4149;
-					}
-				}
-				&:before {
-					content: "";
-					position: absolute;
-					left: -40px;
-					width: 40px;
-					height: 100%;
-					background: #fff;
-					transform-origin: right;
-					transform: skewY(45deg);
-					transition: 1.5s;
-				}
-				&:after {
-					content: "";
-					position: absolute;
-					top: -40px;
-					left: 0px;
-					width: 100%;
-					height: 40px;
-					background: #f2f2f2;
-					transform-origin: bottom;
-					transform: skewX(45deg);
-					transition: 1.5s;
-				}
-			}
-		}
-	}
+@keyframes color-front {
+    0%, 100%  {
+       opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
+}
+@keyframes color-back {
+    0%, 100%, 25%, 75%  {
+       opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes color-right {
+    0%, 50%  {
+       opacity: 0.25;
+    }
+    50%  {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+}
+
+@keyframes color-left {
+    0%, 50%, 100%  {
+       opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+}
+
+.cube {
+    --z-angle: 100px;
+    --color: #06FFFF;
+    --time: 5s;
+   
+    width: 203px;
+    height: 203px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: center center; 
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+    animation: rotation var(--time) infinite linear;
+
+    &__side {
+        position: absolute;
+        width: 203px;
+        height: 203px;
+        opacity: 0;
+
+        &:after{
+            content: '';
+            left: 0;
+            top: 0; 
+            width: 3px;
+            height: 3px;
+            background: var(--color);
+            position: absolute;
+            border-radius: 100%;
+            box-shadow: 
+                0px 40px 0px 0px var(--color), 
+                0px 80px 0px 0px var(--color), 
+                0px 120px 0px 0px var(--color), 
+                0px 160px 0px 0px var(--color),
+                0px 200px 0px 0px var(--color),
+
+                40px 0px 0px 0px var(--color), 
+                80px 0px 0px 0px var(--color), 
+                120px 0px 0px 0px var(--color), 
+                160px 0px 0px 0px var(--color), 
+                200px 0px 0px 0px var(--color),
+
+                40px 40px 0px 0px var(--color), 
+                80px 40px 0px 0px var(--color), 
+                120px 40px 0px 0px var(--color), 
+                160px 40px 0px 0px var(--color), 
+                200px 40px 0px 0px var(--color),
+
+                40px 80px 0px 0px var(--color), 
+                80px 80px 0px 0px var(--color), 
+                120px 80px 0px 0px var(--color), 
+                160px 80px 0px 0px var(--color), 
+                200px 80px 0px 0px var(--color),
+
+                40px 120px 0px 0px var(--color), 
+                80px 120px 0px 0px var(--color), 
+                120px 120px 0px 0px var(--color), 
+                160px 120px 0px 0px var(--color), 
+                200px 120px 0px 0px var(--color),
+
+                40px 160px 0px 0px var(--color), 
+                80px 160px 0px 0px var(--color), 
+                120px 160px 0px 0px var(--color), 
+                160px 160px 0px 0px var(--color), 
+                200px 160px 0px 0px var(--color),
+
+                40px 200px 0px 0px var(--color), 
+                80px 200px 0px 0px var(--color), 
+                120px 200px 0px 0px var(--color), 
+                160px 200px 0px 0px var(--color), 
+                200px 200px 0px 0px var(--color);
+        }
+
+        &--front {
+            animation: color-front var(--time) infinite linear;
+            transform: rotateY(0deg) translateZ(var(--z-angle)); 
+        }
+        &--right {
+            transform: rotateY(90deg) translateZ(var(--z-angle)); 
+            animation: color-right var(--time) infinite linear;
+        }
+        &--back {
+            transform: rotateY(180deg)  translateZ(var(--z-angle)); 
+            animation: color-back var(--time) infinite linear;
+        }
+        &--left {
+            transform: rotateY(-90deg)  translateZ(var(--z-angle)); 
+            animation: color-left var(--time) infinite linear;
+        }
+        &--top {
+            opacity: 1;
+            transform: rotateX(90deg) translateZ(var(--z-angle)); 
+        }
+        &--bottom {
+            opacity: 0;
+        }
+    }
+}
+.shadow {
+    position: absolute;
+    top: 258px;
+    filter: blur(1px);
+
+    .cube {
+        &__side:not(.cube__side--top) {
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) , rgba(0, 0, 0, 0) 80%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) , rgba(0, 0, 0, 0) 80%);
+        }
+    }
 }
