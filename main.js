@@ -111,6 +111,7 @@ let links = [
     "https://awne.pages.dev/pingpong",
     "https://awne.pages.dev/linkbandit",
     "https://awne.pages.dev/rotcustom",
+    "https://awne.pages.dev/flipflop"
 ]
 function openLink(target) {
     window.open(links[target], '_blank');

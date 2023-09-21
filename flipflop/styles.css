@@ -1,0 +1,55 @@
+/* Set-up */
+body {
+	color: rgb(28, 218, 239);
+	text-transform: uppercase;
+	font-family: sans-serif;
+	font-size: 100%;
+	background: #000000;
+	padding: 3em 0 0 0;
+	line-height: 62px;
+	-webkit-perspective: 1000px; 
+}
+
+/* Container box to set the sides relative to */
+.cube {
+	width: 30%;
+	text-align: center;
+	margin: 0 auto;
+	height: 200px;
+
+	-webkit-transition: -webkit-transform 5.33s;
+	transition: transform 5.33s; /* Animate the transform properties */
+
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d; /* <-NB */
+}
+
+/* The two faces of the cube */
+.flippety,.flop {
+	background: rgba(103, 102, 102, 0.443);
+	border: 1px solid rgba(147, 184, 189, .8);
+
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+
+	-webkit-box-shadow: 0 5px 20px rgba(67, 70, 71, 0.3), 0 0 8px 5px rgba(111, 231, 255, 0.4) inset;
+	box-shadow: 0 5px 20px rgba(67, 70, 71, 0.3), 0 0 8px 5px rgba(111, 231, 255, 0.4) inset;
+	height: 200px;
+}
+
+/* Position the faces */
+.flippety {
+	-webkit-transform: translateZ(100px);
+	transform: translateZ(100px);
+}
+
+.flop {
+	-webkit-transform: rotateX(-90deg) translateZ(-100px);
+	transform: rotateX(-90deg) translateZ(-100px);
+}
+
+/* Rotate the cube */
+.cube:hover {
+	-webkit-transform: rotateX(90deg);
+	transform: rotateX(90deg); /* Text bleed at 90º */
+}
