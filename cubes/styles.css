@@ -1,0 +1,82 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    background-color: #07080d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #6e7888;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  #text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    font-family: "Poppins", sans-serif;
+    text-transform: unset;
+    overflow: hidden;
+  }
+  
+  #text h1 {
+    color: #0f1014;
+    font-size: 20vw;
+    letter-spacing: -50px;
+  }
+  
+  #author {
+    width: 100%;
+    bottom: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: inherit;
+    text-transform: uppercase;
+    padding-left: 35px;
+    color: #fff;
+    margin-top: 20px;
+  }
+  
+  #author span {
+    font-size: 10px;
+    margin-left: 20px;
+    color: inherit;
+    letter-spacing: 4px;
+  }
+  
+  #author h1 {
+    font-size: 25px;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 1000px) {
+    #text h1 {
+      font-size: 40vw;
+    }
+  }
+  

@@ -1,100 +1,191 @@
-var colors = ['blue', 'green', 'white', 'yellow', 'orange', 'red'],
-		pieces = document.getElementsByClassName('piece');
+/**
+ *   3D cube created with vanilla Javascript by awne.
+ *   Note: I wrote this code when during my time learning JavaScript
+ *   and Math, enjoy!
+ **/
+"use strict";
 
-// Returns j-th adjacent face of i-th face
-function mx(i, j) {
-	return ([2, 4, 3, 5][j % 4 |0] + i % 2 * ((j|0) % 4 * 2 + 3) + 2 * (i / 2 |0)) % 6;
+const CTX = document.querySelector("#main").getContext("2d");
+
+/* Play with these variables to get different results. */
+let enableBlur = false; /* Enable this if your computer can run it fine. */
+let enableTrans = true; /* Transparency, it is enabled by default. */
+let blurIntensity = 20; /* Blur intensity/amount. */
+let margin = 12; /* Distance Between each vertex. */
+let verCount = 10; /* The number of vertices per axis. */
+let verRadius = 7; /* Radius of a vertex. */
+let focalLength = 320; /* How close the camera from the projected vertices. */
+let rotX = 0.01; /* Rotation amount on X axis. */
+let rotY = 0.02; /* Rotation amount on Y axis. */
+let rotZ = 0.02; /* Rotation amount on Z axis. */
+let pos = {
+  x: 0,
+  y: 0,
+  z: 0
+};
+
+const W = (CTX.canvas.width = 400);
+const _H = (CTX.canvas.height = 400);
+const _HALFW = W * 0.5;
+const _HALF_H = _H * 0.5;
+const _PI = Math.PI;
+const _PI2 = Math.PI * 2;
+let cube;
+
+let _helpers = {
+  random(min, max) {
+    return min + Math.random() * (max - min);
+  },
+  rangeScale(num, inMin, inMax, outMin, outMax) {
+    return ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+  }
+};
+class Vec {
+  constructor(x = 0, y = 0, z = 0) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+}
+class Cube {
+  constructor() {
+    this.pos = pos;
+    this.margin = margin;
+    this.rad = verRadius;
+    this.FOCAL_LENGTH = focalLength;
+    this.verCount = verCount;
+    this.verData = [];
+    let start = 0;
+    let end = this.verCount;
+    /**
+     * I'm basically creating x, y, z vertices.
+     */
+    for (let x = start; x < end; x += 1) {
+      for (let y = start; y < end; y += 1) {
+        for (let z = start; z < end; z += 1) {
+          let r = _helpers.rangeScale(x, start, end, 90, 255);
+          let g = _helpers.rangeScale(y, start, end, 0, 255);
+          let b = _helpers.rangeScale(z, start, end, 0, 255);
+          let posx = x * this.margin - this.centeroid() * 0.5;
+          let posy = y * this.margin - this.centeroid() * 0.5;
+          let posz = z * this.margin - this.centeroid() * 0.5;
+          let pos = new Vec(posx, posy, posz);
+          this.verData.push({
+            pos,
+            color: `rgba(${r},${g},${b},1)`
+          });
+        }
+      }
+    }
+  }
+  centeroid() {
+    return (this.verCount - 1) * this.margin;
+  }
+  draw() {
+    let projVer = this.project(this.verData);
+    CTX.imageSmoothingEnabled = false;
+    if (enableBlur) {
+      CTX.shadowBlur = blurIntensity;
+    }
+    if (enableTrans) {
+      CTX.globalCompositeOperation = "lighter";
+    }
+    CTX.translate(_HALFW, _HALF_H);
+    for (let v of projVer) {
+      CTX.shadowColor = v.color;
+      let { x, y } = v.pos;
+      CTX.fillStyle = v.color;
+      CTX.fillRect(x, y, this.rad, this.rad);
+    }
+    CTX.translate(-_HALFW, -_HALF_H);
+    CTX.globalCompositeOperation = "source-over";
+    CTX.shadowBlur = 0;
+  }
+  project(vertices) {
+    let projVer = [];
+    for (let v of vertices) {
+      let { x, y, z } = v.pos;
+      let px = x * (this.FOCAL_LENGTH / (z - _HALFW));
+      let py = y * (this.FOCAL_LENGTH / (z - _HALF_H));
+      projVer.push({
+        pos: new Vec(px, py),
+        color: v.color
+      });
+    }
+    return projVer;
+  }
+  rotateX(angle) {
+    let cos = Math.cos(angle);
+    let sin = Math.sin(angle);
+    for (let v of this.verData) {
+      v = v.pos;
+      let y = v.y * cos - v.z * sin;
+      let z = v.y * sin + v.z * cos;
+      v.y = y;
+      v.z = z;
+    }
+  }
+  rotateY(angle) {
+    let cos = Math.cos(angle);
+    let sin = Math.sin(angle);
+    for (let v of this.verData) {
+      v = v.pos;
+      let x = v.z * sin + v.x * cos;
+      let z = v.z * cos - v.x * sin;
+      v.x = x;
+      v.z = z;
+    }
+  }
+  rotateZ(angle) {
+    let cos = Math.cos(angle);
+    let sin = Math.sin(angle);
+    for (let v of this.verData) {
+      v = v.pos;
+      let x = v.x * cos - v.y * sin;
+      let y = v.x * sin + v.y * cos;
+      v.x = x;
+      v.y = y;
+    }
+  }
+}
+let _meter = {
+  fps: undefined,
+  desiredFPS: 60,
+  timeNow: performance.now(),
+  startTime: undefined,
+  data: [],
+  calc() {
+    this.timeNow = performance.now();
+    let diff = this.timeNow - this.startTime;
+    this.data.push(diff);
+    this.dt = diff / 1000;
+    this.startTime = this.timeNow;
+  },
+  tick() {
+    this.calc();
+    if (this.data.length > 60) {
+      const dtsum = this.data.reduce((a, c) => a + c);
+      let fpsFormula = Math.round(1000 / (dtsum / this.desiredFPS));
+      this.fps = isNaN(fpsFormula) ? "00" : fpsFormula;
+      this.data.length = 0;
+      let fpsDom = document.querySelector("#fps");
+      fpsDom.innerHTML = `${this.fps}FPS`;
+    }
+  }
+};
+
+const loop = (time) => {
+  CTX.clearRect(0, 0, W, _H);
+  cube.draw();
+  cube.rotateX(rotX);
+  cube.rotateY(rotY);
+  cube.rotateZ(rotZ);
+  _meter.tick();
+};
+
+function init() {
+  cube = new Cube();
+  setInterval(loop, 1000 / 60);
 }
 
-function getAxis(face) {
-	return String.fromCharCode('X'.charCodeAt(0) + face / 2); // X, Y or Z
-}
-
-// Moves each of 26 pieces to their places, assigns IDs and attaches stickers
-function assembleCube() {
-	function moveto(face) {
-		id = id + (1 << face);
-		pieces[i].children[face].appendChild(document.createElement('div'))
-			.setAttribute('class', 'sticker ' + colors[face]);
-		return 'translate' + getAxis(face) + '(' + (face % 2 * 4 - 2) + 'em)';
-	}
-	for (var id, x, i = 0; id = 0, i < 26; i++) {
-		x = mx(i, i % 18);
-		pieces[i].style.transform = 'rotateX(0deg)' + moveto(i % 6) +
-			(i > 5 ? moveto(x) + (i > 17 ? moveto(mx(x, x + 2)) : '') : '');
-		pieces[i].setAttribute('id', 'piece' + id);
-	}
-}
-
-function getPieceBy(face, index, corner) {
-	return document.getElementById('piece' +
-		((1 << face) + (1 << mx(face, index)) + (1 << mx(face, index + 1)) * corner));
-}
-
-// Swaps stickers of the face (by clockwise) stated times, thereby rotates the face
-function swapPieces(face, times) {
-	for (var i = 0; i < 6 * times; i++) {
-		var piece1 = getPieceBy(face, i / 2, i % 2),
-				piece2 = getPieceBy(face, i / 2 + 1, i % 2);
-		for (var j = 0; j < 5; j++) {
-			var sticker1 = piece1.children[j < 4 ? mx(face, j) : face].firstChild,
-					sticker2 = piece2.children[j < 4 ? mx(face, j + 1) : face].firstChild,
-					className = sticker1 ? sticker1.className : '';
-			if (className)
-				sticker1.className = sticker2.className,
-				sticker2.className = className;
-		}
-	}
-}
-
-// Animates rotation of the face (by clockwise if cw), and then swaps stickers
-function animateRotation(face, cw, currentTime) {
-	var k = .3 * (face % 2 * 2 - 1) * (2 * cw - 1),
-			qubes = Array(9).fill(pieces[face]).map(function (value, index) {
-				return index ? getPieceBy(face, index / 2, index % 2) : value;
-			});
-	(function rotatePieces() {
-		var passed = Date.now() - currentTime,
-				style = 'rotate' + getAxis(face) + '(' + k * passed * (passed < 300) + 'deg)';
-		qubes.forEach(function (piece) {
-			piece.style.transform = piece.style.transform.replace(/rotate.\(\S+\)/, style);
-		});
-		if (passed >= 300)
-			return swapPieces(face, 3 - 2 * cw);
-		requestAnimationFrame(rotatePieces);
-	})();
-}
-
-// Events
-function mousedown(md_e) {
-	var startXY = pivot.style.transform.match(/-?\d+\.?\d*/g).map(Number),
-			element = md_e.target.closest('.element'),
-			face = [].indexOf.call((element || cube).parentNode.children, element);
-	function mousemove(mm_e) {
-		if (element) {
-			var gid = /\d/.exec(document.elementFromPoint(mm_e.pageX, mm_e.pageY).id);
-			if (gid && gid.input.includes('anchor')) {
-				mouseup();
-				var e = element.parentNode.children[mx(face, Number(gid) + 3)].hasChildNodes();
-				animateRotation(mx(face, Number(gid) + 1 + 2 * e), e, Date.now());
-			}
-		} else pivot.style.transform =
-			'rotateX(' + (startXY[0] - (mm_e.pageY - md_e.pageY) / 2) + 'deg)' +
-			'rotateY(' + (startXY[1] + (mm_e.pageX - md_e.pageX) / 2) + 'deg)';
-	}
-	function mouseup() {
-		document.body.appendChild(guide);
-		scene.removeEventListener('mousemove', mousemove);
-		document.removeEventListener('mouseup', mouseup);
-		scene.addEventListener('mousedown', mousedown);
-	}
-
-	(element || document.body).appendChild(guide);
-	scene.addEventListener('mousemove', mousemove);
-	document.addEventListener('mouseup', mouseup);
-	scene.removeEventListener('mousedown', mousedown);
-}
-
-document.ondragstart = function() { return false; }
-window.addEventListener('load', assembleCube);
-scene.addEventListener('mousedown', mousedown);
+init();
