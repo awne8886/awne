@@ -1,102 +1,100 @@
-const converted = {
-    "@use postcss-nested": true,
-    "@use postcss-simple-vars": true,
-    body: { margin: "0", padding: "0" },
-    ".wrapper": {
-      display: "flex",
-      width: "100vw",
-      height: "100vh",
-      margin: "0",
-      padding: "0",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "#000000",
-      "&__content": { height: "450px", width: "280px", position: "relative" }
-    },
-    "@keyframes rotation": {
-      "0%": { transform: "rotateZ(0deg) rotateX(-15deg) rotateY(0deg)" },
-      "100%": { transform: "rotateZ(0deg) rotateX(-15deg) rotateY(-360deg)" }
-    },
-    "@keyframes color-front": {
-      "0%, 100%": { opacity: 1 },
-      "25%, 75%": { opacity: 0 }
-    },
-    "@keyframes color-back": {
-      "0%, 100%, 25%, 75%": { opacity: 0 },
-      "50%": { opacity: 1 }
-    },
-    "@keyframes color-right": {
-      "0%, 50%": { opacity: 0.25 },
-      "50%": { opacity: 0 },
-      "25%": { opacity: 1 }
-    },
-    "@keyframes color-left": {
-      "0%, 50%, 100%": { opacity: 0 },
-      "75%": { opacity: 1 }
-    },
-    ".cube": {
-      "--z-angle": "100px",
-      "--color": "#06FFFF",
-      "--time": "5s",
-      width: "203px",
-      height: "203px",
-      position: "relative",
-      transformStyle: "preserve-3d",
-      transformOrigin: "center center",
-      transform: "rotateZ(0deg) rotateX(0deg) rotateY(0deg)",
-      animation: "rotation var(--time) infinite linear",
-      "&__side": {
-        position: "absolute",
-        width: "203px",
-        height: "203px",
-        opacity: 0,
-        "&:after": {
-          content: "''",
-          left: "0",
-          top: "0",
-          width: "3px",
-          height: "3px",
-          background: "var(--color)",
-          position: "absolute",
-          borderRadius: "100%",
-          boxShadow:
-            "0px 40px 0px 0px var(--color), \n                0px 80px 0px 0px var(--color), \n                0px 120px 0px 0px var(--color), \n                0px 160px 0px 0px var(--color),\n                0px 200px 0px 0px var(--color),\n\n                40px 0px 0px 0px var(--color), \n                80px 0px 0px 0px var(--color), \n                120px 0px 0px 0px var(--color), \n                160px 0px 0px 0px var(--color), \n                200px 0px 0px 0px var(--color),\n\n                40px 40px 0px 0px var(--color), \n                80px 40px 0px 0px var(--color), \n                120px 40px 0px 0px var(--color), \n                160px 40px 0px 0px var(--color), \n                200px 40px 0px 0px var(--color),\n\n                40px 80px 0px 0px var(--color), \n                80px 80px 0px 0px var(--color), \n                120px 80px 0px 0px var(--color), \n                160px 80px 0px 0px var(--color), \n                200px 80px 0px 0px var(--color),\n\n                40px 120px 0px 0px var(--color), \n                80px 120px 0px 0px var(--color), \n                120px 120px 0px 0px var(--color), \n                160px 120px 0px 0px var(--color), \n                200px 120px 0px 0px var(--color),\n\n                40px 160px 0px 0px var(--color), \n                80px 160px 0px 0px var(--color), \n                120px 160px 0px 0px var(--color), \n                160px 160px 0px 0px var(--color), \n                200px 160px 0px 0px var(--color),\n\n                40px 200px 0px 0px var(--color), \n                80px 200px 0px 0px var(--color), \n                120px 200px 0px 0px var(--color), \n                160px 200px 0px 0px var(--color), \n                200px 200px 0px 0px var(--color)"
-        },
-        "&--front": {
-          animation: "color-front var(--time) infinite linear",
-          transform: "rotateY(0deg) translateZ(var(--z-angle))"
-        },
-        "&--right": {
-          transform: "rotateY(90deg) translateZ(var(--z-angle))",
-          animation: "color-right var(--time) infinite linear"
-        },
-        "&--back": {
-          transform: "rotateY(180deg)  translateZ(var(--z-angle))",
-          animation: "color-back var(--time) infinite linear"
-        },
-        "&--left": {
-          transform: "rotateY(-90deg)  translateZ(var(--z-angle))",
-          animation: "color-left var(--time) infinite linear"
-        },
-        "&--top": {
-          opacity: 1,
-          transform: "rotateX(90deg) translateZ(var(--z-angle))"
-        },
-        "&--bottom": { opacity: 0 }
-      }
-    },
-    ".shadow": {
-      position: "absolute",
-      top: "258px",
-      filter: "blur(1px)",
-      ".cube": {
-        "&__side:not(.cube__side--top)": {
-          maskImage:
-            "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) , rgba(0, 0, 0, 0) 80%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) , rgba(0, 0, 0, 0) 80%)"
-        }
-      }
-    }
-  }
-  
+var colors = ['blue', 'green', 'white', 'yellow', 'orange', 'red'],
+		pieces = document.getElementsByClassName('piece');
+
+// Returns j-th adjacent face of i-th face
+function mx(i, j) {
+	return ([2, 4, 3, 5][j % 4 |0] + i % 2 * ((j|0) % 4 * 2 + 3) + 2 * (i / 2 |0)) % 6;
+}
+
+function getAxis(face) {
+	return String.fromCharCode('X'.charCodeAt(0) + face / 2); // X, Y or Z
+}
+
+// Moves each of 26 pieces to their places, assigns IDs and attaches stickers
+function assembleCube() {
+	function moveto(face) {
+		id = id + (1 << face);
+		pieces[i].children[face].appendChild(document.createElement('div'))
+			.setAttribute('class', 'sticker ' + colors[face]);
+		return 'translate' + getAxis(face) + '(' + (face % 2 * 4 - 2) + 'em)';
+	}
+	for (var id, x, i = 0; id = 0, i < 26; i++) {
+		x = mx(i, i % 18);
+		pieces[i].style.transform = 'rotateX(0deg)' + moveto(i % 6) +
+			(i > 5 ? moveto(x) + (i > 17 ? moveto(mx(x, x + 2)) : '') : '');
+		pieces[i].setAttribute('id', 'piece' + id);
+	}
+}
+
+function getPieceBy(face, index, corner) {
+	return document.getElementById('piece' +
+		((1 << face) + (1 << mx(face, index)) + (1 << mx(face, index + 1)) * corner));
+}
+
+// Swaps stickers of the face (by clockwise) stated times, thereby rotates the face
+function swapPieces(face, times) {
+	for (var i = 0; i < 6 * times; i++) {
+		var piece1 = getPieceBy(face, i / 2, i % 2),
+				piece2 = getPieceBy(face, i / 2 + 1, i % 2);
+		for (var j = 0; j < 5; j++) {
+			var sticker1 = piece1.children[j < 4 ? mx(face, j) : face].firstChild,
+					sticker2 = piece2.children[j < 4 ? mx(face, j + 1) : face].firstChild,
+					className = sticker1 ? sticker1.className : '';
+			if (className)
+				sticker1.className = sticker2.className,
+				sticker2.className = className;
+		}
+	}
+}
+
+// Animates rotation of the face (by clockwise if cw), and then swaps stickers
+function animateRotation(face, cw, currentTime) {
+	var k = .3 * (face % 2 * 2 - 1) * (2 * cw - 1),
+			qubes = Array(9).fill(pieces[face]).map(function (value, index) {
+				return index ? getPieceBy(face, index / 2, index % 2) : value;
+			});
+	(function rotatePieces() {
+		var passed = Date.now() - currentTime,
+				style = 'rotate' + getAxis(face) + '(' + k * passed * (passed < 300) + 'deg)';
+		qubes.forEach(function (piece) {
+			piece.style.transform = piece.style.transform.replace(/rotate.\(\S+\)/, style);
+		});
+		if (passed >= 300)
+			return swapPieces(face, 3 - 2 * cw);
+		requestAnimationFrame(rotatePieces);
+	})();
+}
+
+// Events
+function mousedown(md_e) {
+	var startXY = pivot.style.transform.match(/-?\d+\.?\d*/g).map(Number),
+			element = md_e.target.closest('.element'),
+			face = [].indexOf.call((element || cube).parentNode.children, element);
+	function mousemove(mm_e) {
+		if (element) {
+			var gid = /\d/.exec(document.elementFromPoint(mm_e.pageX, mm_e.pageY).id);
+			if (gid && gid.input.includes('anchor')) {
+				mouseup();
+				var e = element.parentNode.children[mx(face, Number(gid) + 3)].hasChildNodes();
+				animateRotation(mx(face, Number(gid) + 1 + 2 * e), e, Date.now());
+			}
+		} else pivot.style.transform =
+			'rotateX(' + (startXY[0] - (mm_e.pageY - md_e.pageY) / 2) + 'deg)' +
+			'rotateY(' + (startXY[1] + (mm_e.pageX - md_e.pageX) / 2) + 'deg)';
+	}
+	function mouseup() {
+		document.body.appendChild(guide);
+		scene.removeEventListener('mousemove', mousemove);
+		document.removeEventListener('mouseup', mouseup);
+		scene.addEventListener('mousedown', mousedown);
+	}
+
+	(element || document.body).appendChild(guide);
+	scene.addEventListener('mousemove', mousemove);
+	document.addEventListener('mouseup', mouseup);
+	scene.removeEventListener('mousedown', mousedown);
+}
+
+document.ondragstart = function() { return false; }
+window.addEventListener('load', assembleCube);
+scene.addEventListener('mousedown', mousedown);
