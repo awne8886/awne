@@ -107,12 +107,12 @@ let links = [
     "https://github.com/awne8886/",
     "https://www.snapchat.com/add/awne.me",
     "https://instagram.com/awen8091",
-    "https://awne.pages.dev/jibbertyper",
-    "https://awne.pages.dev/pingpong",
-    "https://awne.pages.dev/linkbandit",
-    "https://awne.pages.dev/rotcustom",
-    "https://awne.pages.dev/flipflop",
-    "https://awne.pages.dev/cubes",
+    "https://awne.xyz/jibbertyper",
+    "https://awne.xyz/pingpong",
+    "https://awne.xyz/linkbandit",
+    "https://awne.xyz/rotcustom",
+    "https://awne.xyz/flipflop",
+    "https://awne.xyz/cubes",
 ]
 function openLink(target) {
     window.open(links[target], '_blank');
