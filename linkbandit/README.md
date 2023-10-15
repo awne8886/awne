@@ -1,7 +1,7 @@
-# Linkbandit
+#linkbandit
 **Online link generator, with presets for Discord NitrO, and more, with settings for more websites as well.**
 
-You can use the website [here](https://alenpascal.pages.dev/linkbandit).
+You can use the website [here](https://awne.xyz/linkbandit).
 
 Features:
 > - Customize base URLs, extension length, and filler characters
