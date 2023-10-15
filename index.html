@@ -1,135 +1,136 @@
 <!doctype HTML>
+<html lang="en">
+    <!--
 
-<!--
+    Yo! If you're reading this, then congratulations! You've found the source code of this webpage.
+    I'm not very good at coding, so please keep that in mind if you are here to steal stuff.
+    I can't stop you, so I'll just warn you that there are better places to steal from.                                                                              ??                                                      awne is here.
 
-Yo! If you're reading this, then congratulations! You've found the source code of this webpage.
-I'm not very good at coding, so please keep that in mind if you are here to steal stuff.
-I can't stop you, so I'll just warn you that there are better places to steal from.                                                                              ??                                                      awne is here.
+    Enjoy your time here!
 
-Enjoy your time here!
+    -->
 
--->
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <meta name="description" content="awne's website for awne's things.">
-    <meta name="author" content="awne">
-    <meta name="title" content="awne is kewl"/>
-    <meta name="og:title" content="awne is kewl"/>
-    <meta name="og:description" content="awne's website for awne's things."/>
-    <meta name="og:type" content="website"/>
-    <meta name="og:url" content="https://awne.xyz"/>
-    <meta name="og:image" content="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
-    <meta name="google-site-verification" content="KdEIykkQd6Z_U6fm2NQcVIiGozbwknSroqn7FE8Jt-c" />
-    <meta property="theme-color" content="#6600FF"/>
-    <link rel="shortcut icon" type="image/jpg" href="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
-    <link rel="icon" type="image/jpg" href="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Cutive Mono' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Kosugi Maru' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Space Mono' rel='stylesheet'>
-    <title>[ awne.me ]</title>
-</head>
-<body>
-    <script src="main.js"></script>
-    <button id="themeChange" class="themeButton" onclick="rotateTheme()"></button>
-    <button id="fontChange" class="fontButton" onclick="rotateFont()">T</button>
-    <div id="transitionRectangle" class="splashStateRect"></div>
-    <div id="splash" onclick="javascript:init()" class="heading clickable centered">click to enter!.</div>
-    <div id="topnav" class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#links">Links</a>
-        <a href="#projects">Public Projects</a>
-    </div>
-    <div id="title" class="heading clickable">awne is kewl</div>
-    <section id="home">
-        <h1>Welcome!</h1>
-        <p>This is awne.me, a place for me (Alen) to post things online and for you to try them out!. Pretty simple, right?</p>
-    </section>
-    <section id="about">
-        <h1>About Me</h1>
-        <p>Alen is an internet user who does a lot of different things. He likes to create stuff and dislikes talking about himself in 3rd person. Here is a short list of things that Alen does:</p>
-        <ul>
-            <li>Plays Minecraft/COD</li>
-            <li>Does Photography</li>
-            <li>Makes Maggi and Noodles</li>
-            <li>Loves Dogs</li>
-            <li>Learning German</li>
-            <li>Talks a lot on Discord and Snapchat</li>
-            <li>Codes basic things (such as this site!) (ripped off)</li>
-        </ul>
-        <p>Anyways, I'm basically just a person who likes to learn new things and get new skills.</p>
-    </section>
-    <section id="links">
-        <h1>Links</h1>
-        <p>Here, you can find links to Alen's online profiles. Follow me, or else I follow you home.</p>
-        <subsection>
-            <h1>Snapchat</h1>
-            <p>I have SnapChat, where you can talk to me directly.!</p>
-            <button onclick="openLink(1)">Add me on SnapChat</button>
-        </subsection>
-        <subsection>
-            <h1>Instagram</h1>
-            <p>This is what I do for fun, I do some edits of pic's which I/Other's take.</p>
-            <button onclick="openLink(2)">awne8091 on Instagram</button>
-        </subsection>
-        <subsection>
-            <h1>awne Online</h1>
-            <p>This is my website, and I do my best to make it interactive! If you <b>keep scrolling</b>, there are some fun gadgets and things for <b>you</b> to play wth down below!</p>
-            <button onclick="trolle()">This button does nothing!</button>
-        </subsection>
-    </section>
-    <section id="projects">
-        <h1>Public Projects</h1>
-        <p>I have a few tiny webapps that <b>you</b> can try out! They are all interactive.</p>
-        <subsection>
-            <h1>CUBES</h1>
-            <p>Playable 3d Rubix Cube.</p>
-            <button onclick="openLink(8)">Play Rubix Cube</button>
-        </subsection>
-        <subsection>
-            <h1>Quote Generator</h1>
-            <p>I made this to test my skills as a challenge on the first version of this website, and it's still here. You can use it below, and suggest new quotes by joining my Discord!</p>
-            <button onclick="genQuote()">Generate a Quote</button>
-            <p id="quoteBox"></p>
-        </subsection>
-        <subsection>
-            <h1>Jibbertyper</h1>
-            <p>This is a typing game that generates random words for you to type into a box within a set amount of time. Can also be used as a copypasta generator.</p>
-            <button onclick="openLink(3)">Try Jibbertyper</button>
-        </subsection>
-        <subsection>
-            <h1>Ping Pong</h1>
-            <p>A small test project that just sends you back and forth between two blank files (Kinda fun tbh).</p>
-            <button onclick="openLink(4)">Get Bounced</button>
-        </subsection>
-        <subsection>
-            <h1>Linkbandit</h1>
-            <p>A customizable text generator that can make large amounts of links. Presets included.</p>
-            <button onclick="openLink(5)">Use Linkbandit</button>
-        </subsection>
-        <subsection>
-            <h1>Rotcustom</h1>
-            <p>A project that can decode simple rotation ciphered text.</p>
-            <button onclick="openLink(6)">Use Rotcustom</button>
-        </subsection>
-        <subsection>
-            <h1>Flip Flop</h1>
-            <p>A simple spinning cube.</p>
-            <button onclick="openLink(7)">Use FlipFlop</button>
-        </subsection>
-        
-    </section>
-    <footer>
-        <p>© awne 2020-2050</p>
-    </footer>
-</body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta name="description" content="awne's website for awne's things.">
+        <meta name="author" content="awne">
+        <meta name="title" content="awne is kewl"/>
+        <meta name="og:title" content="awne is kewl"/>
+        <meta name="og:description" content="awne's website for awne's things."/>
+        <meta name="og:type" content="website"/>
+        <meta name="og:url" content="https://awne.xyz"/>
+        <meta name="og:image" content="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
+        <meta name="google-site-verification" content="KdEIykkQd6Z_U6fm2NQcVIiGozbwknSroqn7FE8Jt-c" />
+        <meta property="theme-color" content="#6600FF"/>
+        <link rel="shortcut icon" type="image/jpg" href="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
+        <link rel="icon" type="image/jpg" href="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Cutive Mono' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kosugi Maru' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Space Mono' rel='stylesheet'>
+        <title>[ awne.me ]</title>
+    </head>
+    <body>
+        <script src="main.js"></script>
+        <button id="themeChange" class="themeButton" onclick="rotateTheme()">theme</button>
+        <button id="fontChange" class="fontButton" onclick="rotateFont()">font</button>
+        <div id="transitionRectangle" class="splashStateRect"></div>
+        <div id="splash" onclick="javascript:init()" class="heading clickable centered">click to enter!.</div>
+        <div id="topnav" class="topnav">
+            <a class="active" href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#links">Links</a>
+            <a href="#projects">Public Projects</a>
+        </div>
+        <div id="title" class="heading clickable">awne is kewl</div>
+        <section id="home">
+            <h1>Welcome!</h1>
+            <p>This is awne.me, a place for me (Alen) to post things online and for you to try them out!. Pretty simple, right?</p>
+        </section>
+        <section id="about">
+            <h1>About Me</h1>
+            <p>Alen is an internet user who does a lot of different things. He likes to create stuff and dislikes talking about himself in 3rd person. Here is a short list of things that Alen does:</p>
+            <ul>
+                <li>Plays Minecraft/COD</li>
+                <li>Does Photography</li>
+                <li>Makes Maggi and Noodles</li>
+                <li>Loves Dogs</li>
+                <li>Learning German</li>
+                <li>Talks a lot on Discord and Snapchat</li>
+                <li>Codes basic things (such as this site!) (ripped off)</li>
+            </ul>
+            <p>Anyways, I'm basically just a person who likes to learn new things and get new skills.</p>
+        </section>
+        <section id="links">
+            <h1>Links</h1>
+            <p>Here, you can find links to Alen's online profiles. Follow me, or else I follow you home.</p>
+            <subsection>
+                <h1>Snapchat</h1>
+                <p>I have SnapChat, where you can talk to me directly.!</p>
+                <button onclick="openLink(1)">Add me on SnapChat</button>
+            </subsection>
+            <subsection>
+                <h1>Instagram</h1>
+                <p>This is what I do for fun, I do some edits of pic's which I/Other's take.</p>
+                <button onclick="openLink(2)">awne8091 on Instagram</button>
+            </subsection>
+            <subsection>
+                <h1>awne Online</h1>
+                <p>This is my website, and I do my best to make it interactive! If you <b>keep scrolling</b>, there are some fun gadgets and things for <b>you</b> to play wth down below!</p>
+                <button onclick="trolle()">This button does nothing!</button>
+            </subsection>
+        </section>
+        <section id="projects">
+            <h1>Public Projects</h1>
+            <p>I have a few tiny webapps that <b>you</b> can try out! They are all interactive.</p>
+            <subsection>
+                <h1>CUBES</h1>
+                <p>Playable 3d Rubix Cube.</p>
+                <button onclick="openLink(8)">Play Rubix Cube</button>
+            </subsection>
+            <subsection>
+                <h1>Quote Generator</h1>
+                <p>I made this to test my skills as a challenge on the first version of this website, and it's still here. You can use it below, and suggest new quotes by joining my Discord!</p>
+                <button onclick="genQuote()">Generate a Quote</button>
+                <p id="quoteBox"></p>
+            </subsection>
+            <subsection>
+                <h1>Jibbertyper</h1>
+                <p>This is a typing game that generates random words for you to type into a box within a set amount of time. Can also be used as a copypasta generator.</p>
+                <button onclick="openLink(3)">Try Jibbertyper</button>
+            </subsection>
+            <subsection>
+                <h1>Ping Pong</h1>
+                <p>A small test project that just sends you back and forth between two blank files (Kinda fun tbh).</p>
+                <button onclick="openLink(4)">Get Bounced</button>
+            </subsection>
+            <subsection>
+                <h1>Linkbandit</h1>
+                <p>A customizable text generator that can make large amounts of links. Presets included.</p>
+                <button onclick="openLink(5)">Use Linkbandit</button>
+            </subsection>
+            <subsection>
+                <h1>Rotcustom</h1>
+                <p>A project that can decode simple rotation ciphered text.</p>
+                <button onclick="openLink(6)">Use Rotcustom</button>
+            </subsection>
+            <subsection>
+                <h1>Flip Flop</h1>
+                <p>A simple spinning cube.</p>
+                <button onclick="openLink(7)">Use FlipFlop</button>
+            </subsection>
+            
+        </section>
+        <footer>
+            <p>© awne 2020-2050</p>
+        </footer>
+    </body>
+</html>
