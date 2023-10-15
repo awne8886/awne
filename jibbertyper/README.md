@@ -1,4 +1,4 @@
-# Jibbertyper
+#Jibbertyper
 **Online typing minigame with randomly generated words.**
 
 Features:
