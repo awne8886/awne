@@ -1,2 +1,2 @@
-# flipflop
-Flip flops a cube
+#flipflop
+Flip flops a cube using pointer location
