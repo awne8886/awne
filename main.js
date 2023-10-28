@@ -113,6 +113,7 @@ let links = [
     "https://awne.xyz/rotcustom",
     "https://awne.xyz/flipflop",
     "https://awne.xyz/cubes",
+    "https://awne.xyz/chess",
 ]
 function openLink(target) {
     window.open(links[target], '_blank');
