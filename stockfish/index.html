@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="title" content="Stockfish AI">
+  <meta name="og:title" content="Stockfish AI">
+  <meta name="og:description" content="Stockfish AI">
+  <meta name="og:image" content="https://cdn.awne.xyz/images/Screenshot%202023-11-05%20165640.png">
+  <link rel="shortcut icon" type="image/jpg" href="https://cdn.awne.xyz/images/Screenshot%202023-11-05%20165640.png">
+  <link rel="icon" type="image/jpg" href="https://cdn.awne.xyz/images/Screenshot%202023-11-05%20165640.png">
+  <title>Stockfish AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="stockfish.js"></script>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    #board1 {
+      width: 400px;
+      margin-top: 20px;
+    }
+  </style>
+  <script src="chessboardjs-1.0.0\js\chessboard-1.0.0.min.js"></script>
+  <script>
+    // Import Stockfish
+    const stockfish = new Worker('stockfish.js');
+
+    // Initialize chessboard
+    const board1 = Chessboard('board1', {
+      draggable: true,
+      position: 'start',
+      onDragStart,
+      onDrop,
+      onSnapEnd,
+    });
+
+    // Initialize chess game
+    const game = new Chess();
+    let playerVsStockfish = true; // Default mode
+
+    // Handle drag start
+    function onDragStart (source, piece) {
+      // Prevent dragging when it's not the player's turn or against Stockfish
+      if (playerVsStockfish && game.in_checkmate()) return false;
+      if (game.turn() === 'w' && piece.search(/^b/) !== -1) return false;
+      if (game.turn() === 'b' && piece.search(/^w/) !== -1) return false;
+    }
+
+    // Handle piece drop
+    function onDrop (source, target) {
+      // Move validation
+      const move = game.move({ from: source, to: target, promotion: 'q' });
+
+      // Update chessboard position
+      board1.position(game.fen());
+
+      // Player vs Stockfish mode
+      if (playerVsStockfish && move) {
+        makeStockfishMove();
+      }
+    }
+
+    // Handle snap end
+    function onSnapEnd () {
+      board1.position(game.fen());
+    }
+
+    // Make a move using Stockfish
+    function makeStockfishMove() {
+      stockfish.postMessage('position fen ' + game.fen());
+      stockfish.postMessage('go depth 10'); // You can adjust the depth for difficulty
+    }
+
+    // Listen to messages from Stockfish
+    stockfish.onmessage = function (event) {
+      const message = event.data;
+      if (message.startsWith('bestmove')) {
+        const bestMove = message.split(' ')[1];
+        game.ugly_move(bestMove);
+        board1.position(game.fen());
+      }
+    };
+  </script>
+</head>
+
+
+<body>
+  <h1>Chess Against Stockfish 16</h1>
+  <div id="board1"></div>
+</body>
+</html>
