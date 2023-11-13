@@ -1,0 +1,35 @@
+{
+    "name": "parrot-ascii-art",
+    "version": "1.0.0",
+    "description": "A simple website displaying random parrot ASCII art",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/awne8886/parrot/git"
+    },
+    "keywords": [
+      "parrot",
+      "ascii art",
+      "cloudflare pages"
+    ],
+    "author": "awne",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.17.1"
+    },
+    "devDependencies": {},
+    "engines": {
+      "node": ">=10.0.0"
+    },
+    "homepage": "https://github.com/awne8886/parrot/",
+    "bugs": {
+      "url": "https://github.com/awne8886/parrot/issues"
+    },
+    "scripts": {
+      "start": "node server.js"
+    }
+  }
+  
