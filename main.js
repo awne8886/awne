@@ -114,6 +114,7 @@ let links = [
     "https://awne.xyz/flipflop",
     "https://awne.xyz/cubes",
     "https://awne.xyz/chess",
+    "https://awne.xyz/box",
 ]
 function openLink(target) {
     window.open(links[target], '_blank');
