@@ -1800,10 +1800,10 @@ class Scrambler {
     this.dificulty = 0;
 
     this.scrambleLength = {
-      2: [ 7, 9, 11 ],
-      3: [ 20, 25, 30 ],
-      4: [ 30, 40, 50 ],
-      5: [ 40, 60, 80 ],
+      2: [ 7, 9, 15 ],
+      3: [ 20, 30, 50 ],
+      4: [ 30, 40, 70 ],
+      5: [ 40, 60, 100 ],
     };
 
     this.moves = [];
@@ -3788,7 +3788,7 @@ class Game {
         if ( ! tappedTwice ) {
 
           tappedTwice = true;
-          setTimeout( () => tappedTwice = false, 300 );
+          setTimeout( () => tappedTwice = false, 400 );
           return false;
 
         }
