@@ -16,11 +16,11 @@
         <meta name="description" content="awne's website for awne's things.">
         <meta name="author" content="awne">
         <meta name="title" content="awne is kewl"/>
-        <link rel="canonical" href="https://awne.xyz"/>
+        <link rel="canonical" href="https://awne.me"/>
         <meta name="og:title" content="awne is kewl"/>
         <meta name="og:description" content="awne's website for awne's things."/>
         <meta name="og:type" content="website"/>
-        <meta name="og:url" content="https://awne.xyz"/>
+        <meta name="og:url" content="https://awne.me"/>
         <meta name="og:image" content="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
         <meta name="google-site-verification" content="KdEIykkQd6Z_U6fm2NQcVIiGozbwknSroqn7FE8Jt-c" />
         <meta property="theme-color" content="#6600FF"/>
@@ -45,14 +45,17 @@
     <body>
         <script src="main.js"></script>
         <script src="discord.js"></script>
-        <script>
-            const sendembed = new Discord();
-            sendembed.Visitor();
-        </script>
         <button id="themeChange" class="themeButton" onclick="rotateTheme()">theme</button>
         <button id="fontChange" class="fontButton" onclick="rotateFont()">font</button>
         <div id="transitionRectangle" class="splashStateRect"></div>
         <div id="splash" onclick="javascript:init()" class="heading clickable centered">click to enter!.</div>
+        <script>
+            document.getElementById('splash').addEventListener('click', async () => {
+                const response = await fetch('/splash');
+                const data = await response.json();
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+            });
+        </script>
         <div id="topnav" class="topnav">
             <a class="active" href="#home">Home</a>
             <a href="#about">About</a>
