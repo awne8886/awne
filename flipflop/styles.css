@@ -1,24 +1,38 @@
+/* FlipFlop, pixel skin. Colours are the app's own; shared utilities live
+   in /pixel.css. */
+
 /* Set-up */
 body {
 	color: rgb(6, 106, 117);
 	text-transform: uppercase;
-	font-family: sans-serif;
+	font-family: var(--px-font-head);
 	font-size: 100%;
 	background: #000000;
 	padding: 3em 0 0 0;
+	/* perspective makes body the containing block for the fixed scanline
+	   overlay, so body has to fill the viewport */
+	margin: 0;
+	min-height: 100vh;
+	box-sizing: border-box;
 	line-height: 62px;
-	-webkit-perspective: 1000px; 
+	-webkit-perspective: 1000px;
+	/* same vanishing point as before body was stretched to full height */
+	perspective-origin: 50% 124px;
+	--px-scan: rgb(147, 184, 189);
+	--px-scan-opacity: 0.15;
 }
 
 /* Container box to set the sides relative to */
 .cube {
-	width: 30%;
+	width: max(30%, 280px);
+	max-width: calc(100% - 32px);
 	text-align: center;
 	margin: 0 auto;
 	height: 200px;
 
-	-webkit-transition: -webkit-transform 5.33s;
-	transition: transform 5.33s; /* Animate the transform properties */
+	/* the 5.33s flip now advances in visible frames */
+	-webkit-transition: -webkit-transform 5.33s steps(40, jump-end);
+	transition: transform 5.33s steps(40, jump-end); /* Animate the transform properties */
 
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d; /* <-NB */
@@ -27,14 +41,23 @@ body {
 /* The two faces of the cube */
 .flippety,.flop {
 	background: rgb(247, 247, 247);
-	border: 1px solid rgba(147, 184, 189, .8);
+	border: 4px solid rgba(147, 184, 189, .8);
 
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-
-	-webkit-box-shadow: 0 5px 20px rgba(105, 108, 109, .3), 0 0 8px 5px rgba(208, 223, 226, .4) inset;
-	box-shadow: 0 5px 20px rgba(105, 108, 109, .3), 0 0 8px 5px rgba(208, 223, 226, .4) inset;
+	/* hard pixel shadow and a stepped inner bevel instead of soft glows */
+	-webkit-box-shadow: 8px 8px 0 rgba(105, 108, 109, .3), inset -4px -4px 0 rgba(208, 223, 226, .9), inset 4px 4px 0 rgb(247, 247, 247);
+	box-shadow: 8px 8px 0 rgba(105, 108, 109, .3), inset -4px -4px 0 rgba(208, 223, 226, .9), inset 4px 4px 0 rgb(247, 247, 247);
 	height: 200px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 16px;
+}
+.flippety h1, .flop h2 {
+	font-size: clamp(12px, 1.6vw, 20px);
+	font-weight: normal;
+	line-height: 1.8;
+	margin: 0;
 }
 
 /* Position the faces */
