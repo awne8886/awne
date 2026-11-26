@@ -32,6 +32,7 @@
 
 
   <title> AI!</title>
+  <link rel="stylesheet" href="../pixel.css">
 
   <style>
     html { font-size: 15px; }
@@ -71,6 +72,7 @@
     <link rel=&quot;canonical&quot; href=&quot;https://awne.xyz/chess&quot;>
   <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;>
   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css&quot;>
+  <link rel=&quot;stylesheet&quot; href=&quot;../pixel.css&quot;>
 
   
   
@@ -88,7 +90,7 @@
   --color-board-sat: 40%;
   --color-shadow: hsl(var(--color-board-hue), var(--color-board-sat), 50%);
   --color-shadow-lighter: hsl(var(--color-board-hue), var(--color-board-sat), 55%);
-  --transition-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-ease: steps(4, jump-end);
   --color-background: var(--color-black);
 }
 
@@ -152,7 +154,7 @@ body {
 body {
   background: var(--color-background);
   overflow: hidden;
-  transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms steps(4, jump-end);
 }
 
 #view {
@@ -405,6 +407,23 @@ svg.black { --fill: var(--color-black); }
   top: 50%;
   transform: translate(-50%, -50%);
   width: var(--svg-di);
+}
+
+/* ---- pixel skin (shared utilities in /pixel.css) ---- */
+aside div h3,
+aside div label {
+  font-family: 'Press Start 2P', monospace;
+  font-weight: normal;
+  font-size: calc(var(--edge-width) * 0.22);
+  height: auto;
+}
+aside div input:checked + * {
+  font-weight: normal;
+}
+.piece svg,
+aside div svg,
+.board .row .tile > div > svg {
+  shape-rendering: crispEdges;
 }
 </style>
 
