@@ -17,3 +17,12 @@ canvas {
 #canvas2 {
   filter: blur(1px);
 }
+/* Pixel skin: CRT scanlines drawn over the rain (pointer-events: none).
+   Canvases are pixelated by /pixel.css. */
+body {
+    --px-scan: black;
+    --px-scan-opacity: 0.6;
+}
+.px-scanlines::before {
+    z-index: 2;
+}
