@@ -50,16 +50,16 @@ img, canvas, video {
     line-height: 1.6;
 }
 
-/* Hard 2px pixel outline around glyphs. It is used where a page's own
+/* Hard 1px pixel outline around glyphs. It is used where a page's own
    colour pairing is too low-contrast; the glyph is then read against the
    outline colour. */
 .px-outline {
     --px-o: var(--px-outline, currentColor);
     text-shadow:
-        2px 0 0 var(--px-o), -2px 0 0 var(--px-o),
-        0 2px 0 var(--px-o), 0 -2px 0 var(--px-o),
-        2px 2px 0 var(--px-o), -2px -2px 0 var(--px-o),
-        2px -2px 0 var(--px-o), -2px 2px 0 var(--px-o);
+        1px 0 0 var(--px-o), -1px 0 0 var(--px-o),
+        0 1px 0 var(--px-o), 0 -1px 0 var(--px-o),
+        1px 1px 0 var(--px-o), -1px -1px 0 var(--px-o),
+        1px -1px 0 var(--px-o), -1px 1px 0 var(--px-o);
 }
 
 /* ---------- framed boxes with stepped corners ----------

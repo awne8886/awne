@@ -26,6 +26,7 @@
         <meta property="theme-color" content="#6600FF"/>
         <link rel="shortcut icon" type="image/jpg" href="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
         <link rel="icon" type="image/jpg" href="https://ucarecdn.com/2ee2439b-1a67-4c44-99e6-767d4d974034/"/>
+        <link rel="stylesheet" href="pixel.css">
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,28 +43,28 @@
         <link href='https://fonts.googleapis.com/css?family=Space Mono' rel='stylesheet'>
         <title>[ awne.me ]</title>
     </head>
-    <body>
+    <body class="px-scanlines px-body">
         <script src="main.js"></script>
         <script src="discord.js"></script>
-        <button id="themeChange" class="themeButton" onclick="rotateTheme()">theme</button>
-        <button id="fontChange" class="fontButton" onclick="rotateFont()">font</button>
+        <button id="themeChange" class="themeButton px-btn px-outline" onclick="rotateTheme()">theme</button>
+        <button id="fontChange" class="fontButton px-btn px-outline" onclick="rotateFont()">font</button>
         <div id="transitionRectangle" class="splashStateRect"></div>
-        <div id="splash" onclick="javascript:init()" class="heading clickable centered">click to enter!.</div>
-        <div id="topnav" class="topnav">
-            <a class="active" href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#links">Links</a>
-            <a href="#projects">Public Projects</a>
+        <div id="splash" onclick="javascript:init()" class="heading clickable centered px-frame">click to enter!.</div>
+        <div id="topnav" class="topnav px-frame">
+            <a class="active px-btn px-outline" href="#home">Home</a>
+            <a class="px-btn px-outline" href="#about">About</a>
+            <a class="px-btn px-outline" href="#links">Links</a>
+            <a class="px-btn px-outline" href="#projects">Public Projects</a>
         </div>
-        <div id="title" class="heading clickable">awne is kewl</div>
-        <section id="home">
+        <div id="title" class="heading clickable px-head">awne is kewl</div>
+        <section id="home" class="px-frame">
             <h1>Welcome!</h1>
             <p>This is awne.me, a place for me (awne) to post things online and for you to try them out!. Pretty simple, right?</p>
         </section>
-        <section id="about">
+        <section id="about" class="px-frame">
             <h1>About Me</h1>
             <p>awne is an internet user who does a lot of different things.They like to create stuff and dislikes talking about themselves in 3rd person. Here is a short list of things that awne does:</p>
-            <ul>
+            <ul class="px-list">
                 <li>Plays Minecraft/COD</li>
                 <li>Does Photography</li>
                 <li>Makes Maggi and Noodles</li>
@@ -74,73 +75,73 @@
             </ul>
             <p>Anyways, I'm basically just a person who likes to learn new things and get new skills.</p>
         </section>
-        <section id="links">
+        <section id="links" class="px-frame">
             <h1>Links</h1>
             <p>Here, you can find links to awne's online profiles. Follow me, or else I follow you home.</p>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Snapchat</h1>
                 <p>I have SnapChat, where you can talk to me directly.!</p>
-                <button onclick="openLink(1)">Add me on SnapChat</button>
+                <button class="px-btn px-outline" onclick="openLink(1)">Add me on SnapChat</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Instagram</h1>
                 <p>This is what I do for fun, .</p>
-                <button onclick="openLink(2)">sophierrka on Instagram</button>
+                <button class="px-btn px-outline" onclick="openLink(2)">sophierrka on Instagram</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>awne Online</h1>
                 <p>This is my website, and I do my best to make it interactive! If you <b>keep scrolling</b>, there are some fun gadgets and things for <b>you</b> to play wth down below!</p>
-                <button onclick="trolle()">This button does nothing!</button>
+                <button class="px-btn px-outline" onclick="trolle()">This button does nothing!</button>
             </subsection>
         </section>
-        <section id="projects">
+        <section id="projects" class="px-frame">
             <h1>Public Projects</h1>
             <p>I have a few tiny webapps that <b>you</b> can try out! They are all interactive.</p>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Chess</h1>
                 <p>Play chess againt an AI, or let 2 AI's fight againt eachother.</p>
-                <button onclick="openLink(9)">Play Chess</button>
+                <button class="px-btn px-outline" onclick="openLink(9)">Play Chess</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>CUBES</h1>
                 <p>Playable 3d Rubix Cube.</p>
-                <button onclick="openLink(8)">Play Rubix Cube</button>
+                <button class="px-btn px-outline" onclick="openLink(8)">Play Rubix Cube</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>BOX</h1>
                 <p>Spinning dotted box.</p>
-                <button onclick="openLink(10)">See BOX</button>
+                <button class="px-btn px-outline" onclick="openLink(10)">See BOX</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Quote Generator</h1>
                 <p>I made this to test my skills as a challenge on the first version of this website, and it's still here. You can use it below, and suggest new quotes by joining my Discord!</p>
-                <button onclick="genQuote()">Generate a Quote</button>
+                <button class="px-btn px-outline" onclick="genQuote()">Generate a Quote</button>
                 <p id="quoteBox"></p>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Jibbertyper</h1>
                 <p>This is a typing game that generates random words for you to type into a box within a set amount of time. Can also be used as a copypasta generator.</p>
-                <button onclick="openLink(3)">Try Jibbertyper</button>
+                <button class="px-btn px-outline" onclick="openLink(3)">Try Jibbertyper</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Ping Pong</h1>
                 <p>A small test project that just sends you back and forth between two blank files (Kinda fun tbh).</p>
-                <button onclick="openLink(4)">Get Bounced</button>
+                <button class="px-btn px-outline" onclick="openLink(4)">Get Bounced</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Linkbandit</h1>
                 <p>A customizable text generator that can make large amounts of links. Presets included.</p>
-                <button onclick="openLink(5)">Use Linkbandit</button>
+                <button class="px-btn px-outline" onclick="openLink(5)">Use Linkbandit</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Rotcustom</h1>
                 <p>A project that can decode simple rotation ciphered text.</p>
-                <button onclick="openLink(6)">Use Rotcustom</button>
+                <button class="px-btn px-outline" onclick="openLink(6)">Use Rotcustom</button>
             </subsection>
-            <subsection>
+            <subsection class="px-frame">
                 <h1>Flip Flop</h1>
                 <p>A simple spinning cube.</p>
-                <button onclick="openLink(7)">Use FlipFlop</button>
+                <button class="px-btn px-outline" onclick="openLink(7)">Use FlipFlop</button>
             </subsection>
             
         </section>
