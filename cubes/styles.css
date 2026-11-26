@@ -343,3 +343,55 @@ body {
 .ui__buttons {
   z-index: 5;
 }
+/* ==========================================================================
+   Pixel skin overrides (shared utilities live in /pixel.css).
+   Only type, edges and easing change. The cube colours, layout and every
+   JS-driven tween stay as they were.
+   ========================================================================== */
+body {
+  font-family: var(--px-font-head);
+}
+/* Press Start 2P is wider than Bungee, so scale the labels to keep the
+   same line lengths. */
+.range__label { font-size: 0.6em; line-height: 1em; }
+.range__list { font-size: 0.4em; }
+.stats > i, .stats > b { font-size: 0.6em; line-height: 1.4; }
+.text--title { font-size: 3.4em; }
+.text--note { font-size: 0.7em; }
+.text--timer { font-size: 2.6em; }
+.text--complete, .text--best-time { font-size: 1.1em; }
+
+/* dashed pixel track and square, hard-shadowed handle */
+.range__track-line {
+  height: 4px;
+  margin-top: -2px;
+  background: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.2) 0 8px, transparent 8px 12px);
+}
+.range__handle div {
+  border-bottom: 0;
+  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.2), 3px 3px 0 rgba(0, 0, 0, 0.2);
+  transition: background 500ms steps(5, jump-end);
+}
+/* stepped hue / saturation / lightness strips */
+.range--color-hue .range__track-line:after,
+.range--color-saturation .range__track-line:after,
+.range--color-lightness .range__track-line:after {
+  -webkit-mask: repeating-linear-gradient(to right, black 0 8px, transparent 8px 10px);
+  mask: repeating-linear-gradient(to right, black 0 8px, transparent 8px 10px);
+}
+
+/* banded background fade instead of a smooth gradient */
+.ui__background {
+  transition: background 500ms steps(5, jump-end);
+}
+.ui__background:after {
+  background-image: linear-gradient(to bottom,
+    white 0 50%,
+    rgba(255, 255, 255, 0.75) 50% 62.5%,
+    rgba(255, 255, 255, 0.5) 62.5% 75%,
+    rgba(255, 255, 255, 0.25) 75% 87.5%,
+    rgba(255, 255, 255, 0) 87.5%);
+}
+.btn svg {
+  shape-rendering: crispEdges;
+}
