@@ -23,7 +23,7 @@ html {
 body {
     background-color: var(--highlight);
     font-family: var(--px-font-body);
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.6;
     color: white;
     max-width: 1120px;
@@ -32,6 +32,7 @@ body {
     padding: 16px 20px 160px 16px;
     font-weight: normal;
     --px-scan: var(--shadow);
+    --px-scan-opacity: 0.25;
 }
 p {
     line-height: 1.6;
@@ -428,7 +429,7 @@ body[style*="Press Start"] {
 
 @media (max-width: 500px) {
     body {
-        font-size: 20px;
+        font-size: 22px;
         padding-left: 12px;
         padding-right: 16px;
     }
