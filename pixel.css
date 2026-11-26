@@ -168,7 +168,7 @@ img, canvas, video {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.35;
+    opacity: var(--px-scan-opacity, 0.35);
     background-image:
         repeating-linear-gradient(to bottom,
             color-mix(in srgb, var(--px-scan, currentColor) 45%, transparent) 0 2px,
