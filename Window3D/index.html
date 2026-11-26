@@ -12,6 +12,7 @@
     <meta name="og:image" content="https://cdn.awne.xyz/images/colorful-cube-with-lines-dots_81048-31200.jpgs"/>
     <link rel="shortcut icon" type="image/jpg" href="https://cdn.awne.xyz/images/colorful-cube-with-lines-dots_81048-31200.jpgs"/>
     <link rel="icon" type="image/jpg" href="https://cdn.awne.xyz/images/colorful-cube-with-lines-dots_81048-31200.jpgs"/>
+	<link rel="stylesheet" href="../pixel.css">
 	<script type="text/javascript" src="main.js"></script>
 	<style type="text/css">
 		
@@ -22,6 +23,8 @@
             height: 100vh;
             margin: 0;
             background-color: #000;
+            --px-scan: #0f0;
+            --px-scan-opacity: 0.12;
         }
 
         .cube-container {
@@ -33,15 +36,21 @@
             height: 200px;
             transform-style: preserve-3d;
             transform: rotateX(45deg) rotateY(45deg);
-            animation: rotateCube 5s infinite linear;
+            /* frame-based spin: 60 frames per 5s turn */
+            animation: rotateCube 5s infinite steps(60, jump-end);
         }
 
         .face {
             position: absolute;
             width: 200px;
             height: 200px;
-            background: radial-gradient(rgba(0, 255, 0, 0.8) 30%, transparent 70%);
-            border: 2px dotted #0f0;
+            /* square 4px dots along each edge, over a glow in hard bands */
+            background:
+                linear-gradient(to right, #0f0 50%, transparent 0) top left / 8px 4px repeat-x,
+                linear-gradient(to right, #0f0 50%, transparent 0) bottom left / 8px 4px repeat-x,
+                linear-gradient(to bottom, #0f0 50%, transparent 0) top left / 4px 8px repeat-y,
+                linear-gradient(to bottom, #0f0 50%, transparent 0) top right / 4px 8px repeat-y,
+                radial-gradient(rgba(0, 255, 0, 0.8) 0 30%, rgba(0, 255, 0, 0.6) 30% 40%, rgba(0, 255, 0, 0.4) 40% 50%, rgba(0, 255, 0, 0.2) 50% 60%, rgba(0, 255, 0, 0.1) 60% 70%, transparent 70%);
         }
 
         .front  { transform: translateZ(100px); }
@@ -58,7 +67,7 @@
 
 	</style>
 </head>
-<body>
+<body class="px-scanlines">
     <div class="cube-container">
         <div class="cube">
             <div class="face front"></div>
