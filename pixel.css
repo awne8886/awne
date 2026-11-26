@@ -1,0 +1,210 @@
+/* ==========================================================================
+   pixel.css: shared 8-bit skin for awne.me and its sub-apps.
+
+   This file adds no colours of its own. Each page maps the --px-* hooks
+   below to colours it already uses (on the main site that is --highlight,
+   --midtone1, --midtone2 and --shadow). Shades are built only with
+   color-mix() from those hooks, and dithering uses hard-stop conic
+   gradients.
+
+   Every visual rule here is opt-in through a px-* class, except a few
+   global safety rules: square corners, pixelated images and canvases,
+   and the focus ring.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+    --px: 4px;                                  /* one "art pixel" */
+    --px-font-head: 'Press Start 2P', 'VT323', monospace;
+    --px-font-body: 'VT323', 'Press Start 2P', monospace;
+    --px-frames: steps(4, jump-end);            /* frame-based motion */
+}
+
+/* ---------- global safety rules ---------- */
+
+*, *::before, *::after {
+    border-radius: 0 !important;
+}
+
+img, canvas, video {
+    image-rendering: pixelated;
+}
+
+/* Pixel focus ring. Pages can point --px-focus at their own accent colour. */
+:focus-visible {
+    outline: 3px dashed var(--px-focus, var(--midtone1, currentColor));
+    outline-offset: 4px;
+}
+
+/* ---------- typography ---------- */
+
+.px-head {
+    font-family: var(--px-font-head);
+    font-weight: normal;
+    letter-spacing: 0;
+    line-height: 1.5;
+}
+.px-body {
+    font-family: var(--px-font-body);
+    line-height: 1.6;
+}
+
+/* Hard 1px pixel outline around glyphs. It is used where a page's own
+   colour pairing is too low-contrast; the glyph is then read against the
+   outline colour. */
+.px-outline {
+    --px-o: var(--px-outline, currentColor);
+    text-shadow:
+        1px 0 0 var(--px-o), -1px 0 0 var(--px-o),
+        0 1px 0 var(--px-o), 0 -1px 0 var(--px-o),
+        1px 1px 0 var(--px-o), -1px -1px 0 var(--px-o),
+        1px -1px 0 var(--px-o), -1px 1px 0 var(--px-o);
+}
+
+/* ---------- framed boxes with stepped corners ----------
+   The border is a stack of four box-shadows. They leave the 4x4 corner
+   squares empty, which gives a one-pixel stepped corner. Two more shadows
+   make a hard drop shadow offset by 4px with the same stepped silhouette,
+   and the two inset shadows draw the bevel.
+     --px-frame : border colour
+     --px-drop  : drop-shadow colour (transparent = none)
+     --px-hi/lo : bevel light / dark (transparent = none)               */
+.px-frame, .px-btn {
+    border: 0 !important;
+    box-shadow:
+        inset var(--px) var(--px) 0 0 var(--px-hi, transparent),
+        inset calc(var(--px) * -1) calc(var(--px) * -1) 0 0 var(--px-lo, transparent),
+        calc(var(--px) * -1) 0 0 0 var(--px-frame, currentColor),
+        var(--px) 0 0 0 var(--px-frame, currentColor),
+        0 calc(var(--px) * -1) 0 0 var(--px-frame, currentColor),
+        0 var(--px) 0 0 var(--px-frame, currentColor),
+        calc(var(--px) * 2) var(--px) 0 0 var(--px-drop, transparent),
+        var(--px) calc(var(--px) * 2) 0 0 var(--px-drop, transparent);
+    transition: box-shadow 0.2s var(--px-frames), background-color 0.2s var(--px-frames), color 0.2s var(--px-frames), transform 0.1s steps(1, jump-start);
+}
+
+/* ---------- 3D bevel buttons ----------
+   A page sets, from colours it already uses:
+     --px-face / --px-ink              idle face and text colour
+     --px-face-hover / --px-ink-hover  hover (optional)
+     --px-face-active / --px-ink-active pressed (optional)
+     --px-light / --px-dark            mixed into the face for the bevel
+     --px-drop                         drop-shadow colour                 */
+.px-btn {
+    --px-bg: var(--px-face, transparent);
+    --px-hi: color-mix(in srgb, var(--px-bg) 55%, var(--px-light, transparent));
+    --px-lo: color-mix(in srgb, var(--px-bg) 50%, var(--px-dark, transparent));
+    --px-frame: var(--px-bg);
+    font-family: var(--px-font-head);
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 10px 14px;
+    background-color: var(--px-bg);
+    color: var(--px-ink, currentColor);
+    cursor: pointer;
+    transform: none;
+}
+.px-btn:hover {
+    --px-bg: var(--px-face-hover, var(--px-face, transparent));
+    color: var(--px-ink-hover, var(--px-ink, currentColor));
+}
+/* Pressed: the button moves 4px down-right, the drop shadow disappears
+   and the bevel flips. */
+.px-btn:active {
+    --px-bg: var(--px-face-active, var(--px-face-hover, var(--px-face, transparent)));
+    --px-drop: transparent;
+    --px-hi: color-mix(in srgb, var(--px-bg) 50%, var(--px-dark, transparent));
+    --px-lo: color-mix(in srgb, var(--px-bg) 55%, var(--px-light, transparent));
+    color: var(--px-ink-active, var(--px-ink-hover, var(--px-ink, currentColor)));
+    transform: translate(var(--px), var(--px));
+}
+
+/* ---------- lists: pixel ▶ sprite instead of bullets ---------- */
+.px-list {
+    list-style: none;
+    padding-left: 0;
+}
+.px-list > li {
+    position: relative;
+    padding-left: 28px;
+}
+.px-list > li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.45em;
+    width: 9px;
+    height: 15px;
+    background: var(--px-bullet, currentColor);
+    /* 3x5 sprite on a 3px grid */
+    clip-path: polygon(0 0, 3px 0, 3px 3px, 6px 3px, 6px 6px, 9px 6px, 9px 9px, 6px 9px, 6px 12px, 3px 12px, 3px 15px, 0 15px);
+}
+
+/* ---------- links: stepped (dashed-pixel) underline ---------- */
+.px-link {
+    text-decoration: none;
+    background-image: linear-gradient(to right, currentColor 50%, transparent 50%);
+    background-size: 8px var(--px);
+    background-repeat: repeat-x;
+    background-position: 0 100%;
+    padding-bottom: 2px;
+    transition: background-size 0.2s var(--px-frames);
+}
+.px-link:hover, .px-link:focus-visible {
+    background-size: 4px var(--px);
+}
+
+/* ---------- background: scanlines over the page colour ----------
+   Put .px-scanlines on <body>. The overlay sits behind content, so it
+   only shows on the page background, and it never takes pointer events. */
+.px-scanlines {
+    position: relative;
+    z-index: 0;
+}
+.px-scanlines::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--px-scan-opacity, 0.35);
+    background-image:
+        repeating-linear-gradient(to bottom,
+            color-mix(in srgb, var(--px-scan, currentColor) 45%, transparent) 0 2px,
+            transparent 2px 4px);
+    animation: px-scan 1.2s steps(2, jump-none) infinite;
+}
+@keyframes px-scan {
+    from { background-position: 0 0; }
+    to   { background-position: 0 4px; }
+}
+
+/* Dithered checkerboard fill (4px cells) in --px-dither over the element's
+   own background colour. */
+.px-dither {
+    background-image: repeating-conic-gradient(var(--px-dither, currentColor) 0 25%, transparent 0 50%);
+    background-size: 8px 8px;
+}
+
+/* ---------- blinking caret ---------- */
+.px-blink {
+    animation: px-blink 1s steps(1, jump-end) infinite;
+}
+@keyframes px-blink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .px-scanlines::before,
+    .px-blink,
+    .px-blink::before,
+    .px-blink::after {
+        animation: none !important;
+    }
+    .px-frame, .px-btn, .px-link {
+        transition-duration: 0s !important;
+    }
+}
