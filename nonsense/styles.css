@@ -14,3 +14,12 @@ canvas {
     top: 0;
     left: 0;
 }
+/* Pixel skin: CRT scanlines drawn over the rain (pointer-events: none).
+   Canvases are pixelated by /pixel.css. */
+body {
+    --px-scan: black;
+    --px-scan-opacity: 0.6;
+}
+.px-scanlines::before {
+    z-index: 2;
+}
