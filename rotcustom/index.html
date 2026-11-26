@@ -13,12 +13,13 @@ awne.me
   <meta name="og:image" content="https://ucarecdn.com/301d20e4-3ab1-4f2a-89a1-f16f8ce279b9/ggon.jpg"/>
   <link rel="shortcut icon" type="image/jpg" href="https://ucarecdn.com/301d20e4-3ab1-4f2a-89a1-f16f8ce279b9/ggon.jpg"/>
   <link rel="icon" type="image/jpg" href="https://ucarecdn.com/301d20e4-3ab1-4f2a-89a1-f16f8ce279b9/ggon.jpg"/>
+  <link rel="stylesheet" href="../pixel.css">
   <link rel="stylesheet" href="styles.css">
   <link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/css?family=Courier Prime' rel='stylesheet'>
   <title>Rotcustom</title>
 </head>
-<body>
+<body class="px-scanlines">
   <div class="title">
     <h1>Rotcustom</h1>
     <h5>Automatically decode and encode rotation ciphers online.</h5>
@@ -33,14 +34,14 @@ awne.me
     <input id="textInput" class="settings" type="text" placeholder="Encoded"> <div class="tooltip">[ What is this? ]<span class="tooltiptext">Input the encoded cipher, or the message you want to decode here. It doesn't matter which, as long as the offset is correct, because it will rotate the letters either way.</span></div>
     <br>
     <br>
-    <button class="button" onclick="javascript:updateSettings()">Generate</button>
-    <button class="button" onclick="javascript:copyResult()">Copy Result</button>
-    <button class="button" onclick="javascript:viewRaw()">View Raw Result</button>
+    <button class="button px-btn" onclick="javascript:updateSettings()">Generate</button>
+    <button class="button px-btn" onclick="javascript:copyResult()">Copy Result</button>
+    <button class="button px-btn" onclick="javascript:viewRaw()">View Raw Result</button>
     <select id="premadeModes">
       <option value="none">None</option>
       <option value="caesar">Caesar Classic</option>
     </select>
-    <button class="button" onclick="javascript:updateTheme()">Change Theme</button>
+    <button class="button px-btn" onclick="javascript:updateTheme()">Change Theme</button>
     <br>
     <br>
   </div>
