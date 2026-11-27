@@ -82,8 +82,6 @@ function rotateFont() {
     const f = document.querySelector('body');
     const transition = document.getElementById('transitionRectangle');
     let fonts = [
-        'VT323',
-        "'Press Start 2P'",
         'DM Sans',
         'Barlow',
         'Cutive Mono',

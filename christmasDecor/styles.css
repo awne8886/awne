@@ -40,18 +40,3 @@ text{
   
 	font-size: 6em;
 }
-/* ---------- pixel skin (shared utilities in /pixel.css) ---------- */
-body {
-  --px-scan: #696969;
-  --px-scan-opacity: 0.2;
-}
-svg {
-  shape-rendering: crispEdges;
-}
-text {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 3em;
-}
-#m1 {
-  font-size: 3.6em;
-}

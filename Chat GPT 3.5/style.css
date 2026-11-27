@@ -1,57 +1,30 @@
-/* Chat with ChatGPT, pixel skin. Colours are the app's own (#171414,
-   #9a9292); shared utilities live in /pixel.css. */
 body {
-    font-family: var(--px-font-body);
-    font-size: 20px;
-    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh;
     margin: 0;
-    --px-focus: #171414;
   }
   
   #chat-container {
-    width: min(400px, 100% - 32px);
-    border: 4px solid #171414;
-    box-shadow: 4px 4px 0 #9a9292;
-    padding: 12px;
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 0 8px;
+    width: 400px;
+    border: 1px solid #171414;
+    padding: 10px;
   }
   
   #chat-display {
     height: 200px;
     overflow-y: scroll;
-    border-bottom: 4px dashed #9a9292;
-    margin-bottom: 12px;
-    flex: 1 0 100%;
+    border-bottom: 1px solid #9a9292;
   }
   
   #user-input {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 5px 8px;
-    font-family: var(--px-font-body);
-    font-size: 20px;
-    border: 4px solid #9a9292;
-    box-sizing: border-box;
-    vertical-align: top;
+    width: 80%;
+    padding: 5px;
   }
   
   button {
-    flex: 0 0 auto;
-    padding: 8px 4px;
-    margin: 0 4px 4px 4px;
-    font-size: 10px;
-    vertical-align: top;
-    --px-face: #9a9292;
-    --px-ink: #171414;
-    --px-face-active: #9a9292;
-    --px-dark: #171414;
-    --px-drop: #171414;
+    width: 18%;
+    padding: 5px;
   }
