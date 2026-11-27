@@ -10,7 +10,7 @@ Read the whole repository before changing anything. Then work in the phases belo
 
 ## 0. Current state (what you are inheriting)
 
-- Static site, hosted on **GitHub Pages** with the root `CNAME` set to `awne.me`. Older domains and URLs also appear in the code: `awne.xyz`, `cdn.awne.xyz`, `*.pages.dev`.
+- Static site with no build step. The repo is connected to **Cloudflare Pages** (project `awne`), which deploys every branch with a preview URL (`<branch>.awne.pages.dev`). There's also a root `CNAME` set to `awne.me`, a GitHub Pages leftover. Confirm with the owner which host serves `awne.me` today. Older domains and URLs also appear in the code: `awne.xyz`, `cdn.awne.xyz`, `*.pages.dev`.
 - Homepage: `index.html`, `styles.css`, `main.js`. It has a "click to enter" splash, a top nav, Home/About/Links/Projects sections, a quote generator, a theme rotator (8 palettes) and a font rotator.
 - Sub-projects, one per folder: `chess`, `stockfish`, `cubes`, `Window3D` (linked as `/box`), `jibbertyper`, `linkbandit`, `rotcustom`, `flipflop`, `pingpong`, `christmasTree`, `christmasDecor`, `idk`, `nonsense`, `parrot`, `Chat GPT 3.5`.
 - A pixel-art reskin was tried and reverted. **Don't** make the new design pixel-art or retro-CRT unless asked.
@@ -26,7 +26,7 @@ Read the whole repository before changing anything. Then work in the phases belo
 ## 2. Known bugs to fix or account for
 
 - **Quote generator freezes the tab:** after every quote has been shown once, the `while` loop in `genQuote()` never exits, because `usedQuotes` is never reset and `quotesUsed` is never incremented. Use a shuffle-bag instead.
-- **Dead links:** the homepage and the CNAME files point at `/box`, `/decor`, `/tree` and `/chatgpt`, but the folders are `Window3D`, `christmasDecor`, `christmasTree` and `Chat GPT 3.5`. Those URLs 404 today. Subfolder `CNAME` files do nothing on GitHub Pages; delete them.
+- **Dead links:** the homepage and the CNAME files point at `/box`, `/decor`, `/tree` and `/chatgpt`, but the folders are `Window3D`, `christmasDecor`, `christmasTree` and `Chat GPT 3.5`. Those URLs 404 today. Subfolder `CNAME` files do nothing on Cloudflare Pages or GitHub Pages; delete them.
 - **`404.html`** fires an insulting `alert()` and then redirects home, which also creates a soft-404 for search engines. Replace it with a real, on-brand 404 page: funny copy, a link home and links to a few projects.
 - **Stockfish** (`/stockfish`) doesn't work. `Chess()` is used but chess.js is never loaded. The script path uses backslashes (`chessboardjs-1.0.0\js\...`). The board script runs in `<head>` before `#board1` exists. jQuery, which chessboard.js needs, is missing. `stockfish.js` (1.3 MB, asm.js) is loaded twice: as a `<script>` and as a Worker. It isn't linked from the homepage. Either merge it into `/chess` as a "vs Stockfish" mode using a modern lazy-loaded Stockfish WASM worker, or fix it properly.
 - **Window3D / BOX:** references `main.js` and `script.js`, which don't exist. The favicon URL ends in `.jpgs`. The description says "three.js" but the page is pure CSS.
@@ -46,7 +46,7 @@ Read the whole repository before changing anything. Then work in the phases belo
 - Project and social buttons use `onclick="window.open(links[n])"`. Replace them with real `<a href>` links, which middle-click, crawlers and keyboards can all use. Don't use link shorteners such as `goo.su` for Instagram; link directly.
 - Fonts: 7 Google Font families load through render-blocking `@import`, yet the default font (`Victor Mono`) is never loaded, and half the fonts in the font rotator aren't loaded either. Use 1–2 self-hosted variable fonts with `font-display: swap`, and give the rotator only fonts that are actually loaded, loading them lazily when picked.
 - Meta tags: OG tags use `name=` instead of `property=`, `theme-color` uses `property=`, Twitter cards are missing, canonical URLs point at the wrong domain, and the copyright says "2020-2050". Fix them all, with a unique title, description and OG image per page.
-- `sitemap.xml` is from 2023 and lists only 7 URLs. Generate it at build time. Add `robots.txt`. Keep `google7947d8b92a75506b.html` (Search Console verification). Delete the unused `loaderio-*` files and `redirect.htaccess`, which GitHub Pages ignores.
+- `sitemap.xml` is from 2023 and lists only 7 URLs. Generate it at build time. Add `robots.txt`. Keep `google7947d8b92a75506b.html` (Search Console verification). Delete the unused `loaderio-*` files and `redirect.htaccess`, which Cloudflare Pages ignores. Do the www → apex redirect with a Cloudflare redirect rule instead.
 - The layout isn't responsive below about 900px beyond one breakpoint, font sizes use `vw` units only (`2.5vw` headings get unreadable on phones), and the theme and font buttons sit at `top: 85%; left: 90%`, where they cover content on mobile.
 - Accessibility: no visible focus styles, low contrast in several of the 8 palettes, emoji and joke text without context. Target WCAG 2.2 AA in every theme.
 
@@ -54,10 +54,10 @@ Read the whole repository before changing anything. Then work in the phases belo
 
 - **Framework:** [Astro](https://astro.build) (static output) with TypeScript. Each toy stays a self-contained page or island and ships zero JS unless it needs it. If the owner prefers zero tooling, fall back to plain HTML/CSS/JS with a tiny shared stylesheet and partials. Confirm with the owner before choosing.
 - **Project registry:** one data file (`src/data/projects.ts` or `projects.json`) holding each project's slug, title, one-line pitch, tags (game / tool / visual / seasonal / experiment), status (live / archived / WIP), year, thumbnail, OG image, source credit and license. The homepage grid, the sitemap, per-project meta and the "more projects" footer all come from it.
-- **URLs:** keep every currently-advertised URL working: `/chess`, `/cubes`, `/jibbertyper`, `/linkbandit`, `/rotcustom`, `/flipflop`, `/pingpong`, `/box`, `/tree`, `/decor`, `/idk`, `/nonsense`, `/parrot`, `/stockfish`. Use lowercase, hyphenated slugs. Add redirect stubs for old paths and folder names (`/Window3D`, `/christmasTree`, `/stockfish` → `/chess?mode=stockfish` if merged, and so on).
+- **URLs:** keep every currently-advertised URL working: `/chess`, `/cubes`, `/jibbertyper`, `/linkbandit`, `/rotcustom`, `/flipflop`, `/pingpong`, `/box`, `/tree`, `/decor`, `/idk`, `/nonsense`, `/parrot`, `/stockfish`. Use lowercase, hyphenated slugs. Add redirects for old paths and folder names (`/Window3D`, `/christmasTree`, `/stockfish` → `/chess?mode=stockfish` if merged, and so on) in a Cloudflare Pages `_redirects` file, using real 301s instead of JS redirects.
 - **Shared shell:** every project page gets a slim, consistent header bar ("← awne.me", the project name, a theme toggle and a "view source / credits" link) that the toy can collapse for fullscreen.
 - **Design tokens:** keep the 8 existing palettes, plus the current yellow/black default, as a real theme system: CSS custom properties, persisted in `localStorage` (wrapped in try/catch), defaulting to `prefers-color-scheme`. Every palette must pass contrast checks. Turn the theme and font rotators into a small, tidy "customize" popover instead of two floating buttons.
-- **Deploy:** a GitHub Actions workflow that builds and deploys to GitHub Pages with the root `CNAME` set to `awne.me`. Add a CI job that runs the build, an HTML validator, a link checker (to catch the `/box` class of bug) and Lighthouse CI with budgets (see §7).
+- **Deploy:** keep **Cloudflare Pages**: set the build command (`npm run build`) and output directory (`dist`) in the Pages project, and keep the per-branch preview deploys. Add a `_headers` file with security headers (CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`) and long cache lifetimes for hashed assets. Remove the root `CNAME` once the owner confirms GitHub Pages is unused. Add a GitHub Actions CI job that runs the build, an HTML validator, a link checker (to catch the `/box` class of bug) and Lighthouse CI with budgets (see §7).
 - **Credits and licensing:** chess, cubes and the Christmas pieces look adapted from CodePen or open-source work. Find the original authors and licenses (e.g. three-rounded-box, chessboard.js is MIT) and credit them on each project page and in a `/credits` page. Keep `LICENSE` files that already exist.
 
 ## 5. Design direction
@@ -96,7 +96,7 @@ Read the whole repository before changing anything. Then work in the phases belo
 - Homepage JS ≤ 30 KB gzipped. No render-blocking third-party requests. CLS < 0.05. LCP < 2s on a mid-range phone.
 - Zero secrets in the repo (a CI secret scan passes). Zero broken internal links (link-checker CI passes). Valid HTML.
 - Keyboard-only navigation works everywhere, with visible focus. Color contrast meets AA in every theme. Every image has alt text. Reduced motion is honored.
-- Every old public URL either works or redirects.
+- Every old public URL either works or redirects (check this on the Cloudflare Pages branch preview before merging).
 - Works in the latest Chrome, Firefox and Safari, and on iOS/Android at 360px width with no horizontal scroll.
 - A `README.md` covers how to run, build and deploy, how to add a new project (one registry entry plus one folder or page), and credits.
 
