@@ -1,73 +1,43 @@
-/* Jibbertyper, pixel skin. Colours are the app's own (#0b1012, white, #AAA,
-   #2c8048, #Ff9c00, #801416); shared pixel utilities live in /pixel.css. */
+@import url('https://fonts.googleapis.com/css2?family=Victor+Mono&display=swap');
 
 body {
     background-color: #0b1012;
-    font-family: var(--px-font-body);
+    font-family: 'Victor Mono', monospace;
     margin: 0 10%;
     margin-bottom: 5%;
     padding: 0;
     box-sizing: border-box;
     font-weight: normal;
-    --px-scan: #AAA;
-    --px-scan-opacity: 0.12;
-    --px-focus: #AAA;
 }
 
-h1, h3 {
-    font-family: var(--px-font-head);
-    font-weight: normal;
-    line-height: 1.5;
-}
-h1 {
-    font-size: clamp(18px, 3vw, 28px);
-    text-shadow: 4px 4px 0 #2c8048;
-}
-h3 {
-    font-size: 16px;
-}
-h5 {
-    font-size: 20px;
-    font-weight: normal;
-    line-height: 1.6;
-    color: #AAA;
-    margin: 8px 0 16px;
-}
-
-.settings {
+.settings, .button {
     background-color: #0b1012;
-    font-family: var(--px-font-body);
-    font-size: 20px;
-    border: 4px solid #AAA;
+    font-family: 'Victor Mono', monospace;
+    border: 3px solid #AAA;
+    border-radius: 10px;
     color: white;
-    padding: 6px 10px;
-    margin-bottom: 14px;
-    margin-right: 8px;
-    box-shadow: 4px 4px 0 #2c8048;
-    transition: background-color 0.2s steps(4, jump-end), box-shadow 0.2s steps(4, jump-end);
-}
-.settings:focus {
-    box-shadow: 4px 4px 0 #Ff9c00;
+    padding: 6px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .button {
-    --px-face: white;
-    --px-ink: #0b1012;
-    --px-face-hover: #0b1012;
-    --px-ink-hover: white;
-    --px-face-active: white;
-    --px-ink-active: #0b1012;
-    --px-light: white;
-    --px-dark: #0b1012;
-    --px-drop: #2c8048;
-    font-family: var(--px-font-head);
-    font-size: 12px;
-    padding: 12px 14px;
-    margin: 4px 12px 14px 4px;
+    background-color: white;
+    border: none;
+    color: #0b1012;
+    border: 3px solid white;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
 .button:hover {
-    /* keep a visible frame while the face matches the page */
-    --px-frame: white;
+    background-color: #0b1012;
+    color: white;
+}
+
+.button:active {
+    background-color: white;
+    color: #0b1012;
 }
 
 ::placeholder,
@@ -81,48 +51,28 @@ h5 {
     width: 100%;
     border: none;
     outline: none;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: normal;
     color: white;
     background-color: #0b1012;
-    font-family: var(--px-font-body);
+    font-family: 'Victor Mono', monospace;
 }
 
 .title {
     padding: 0.1% 0;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .text, .input {
     padding: 2% 0;
 }
-.text {
-    font-size: 28px;
-    line-height: 1.5;
-    letter-spacing: 1px;
-}
-.input {
-    font-size: 26px;
-    line-height: 1.5;
-    resize: vertical;
-    border-top: 4px dashed #AAA;
-}
-.input:focus-visible {
-    outline: 3px dashed #AAA;
-    outline-offset: 4px;
-}
 
-/* segmented, block-by-block progress bars */
 .progress-bar, .progress-bar-secondary {
-    height: 8px;
+    height: 5px;
+    border-radius: 5px;
     margin-bottom: 10px;
     animation-duration: 4s;
     animation-fill-mode: forwards;
-    background-image: repeating-linear-gradient(to right, transparent 0 8px, #0b1012 8px 12px);
-}
-/* main.js sets the bar animation inline with linear timing; this steps it. */
-.progress-bar-time {
-    animation-timing-function: steps(24, jump-end) !important;
 }
 
 .progress-bar {
@@ -191,19 +141,16 @@ h5 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh;
 }
-
+  
 .progress-bars {
     display: flex;
     flex-direction: column;
     justify-items: left;
     align-items: flex-start;
     width: 35%;
-    min-width: 200px;
     margin-bottom: 20px;
-    padding: 4px;
-    border: 4px solid #AAA;
 }
 
 .progress-bar {
@@ -216,11 +163,5 @@ h5 {
 
 .progress-bar-progress {
     background-color: white;
-    transition: width 0.3s steps(4, jump-end);
-}
-
-@media (max-width: 600px) {
-    body {
-        margin: 0 16px;
-    }
+    transition: 0.3s ease-in-out all;
 }

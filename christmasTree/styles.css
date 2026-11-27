@@ -52,25 +52,3 @@ svg{
 	  font-size:2.64em;  
 	fill:#C89568;
 }
-/* ---------- pixel skin (shared utilities in /pixel.css) ----------
-   The svg-scoped selectors outrank the duplicate inline <style> rules in
-   index.html. */
-body {
-  --px-scan: #C89568;
-  --px-scan-opacity: 0.12;
-}
-svg {
-  shape-rendering: crispEdges;
-}
-svg .merryText, svg .merryTextBg {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 2.2em;
-}
-svg .merryTextBg {
-  stroke-width: 4;
-  stroke-linejoin: miter;
-}
-svg .fromChrisText {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1.4em;
-}
